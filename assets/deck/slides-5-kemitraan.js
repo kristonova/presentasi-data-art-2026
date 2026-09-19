@@ -6,6 +6,7 @@
 (function () {
   'use strict';
   var D = (window.DECK = window.DECK || []);
+  var V = window.VIZ;
 
   /* ---------------------------------------------------------------- Slide 12 */
   D.push({
@@ -22,27 +23,44 @@
       'Kedua, Program Publik dan Workshop Gratis untuk pelajar SMA dan mahasiswa di setiap kota guna menumbuhkan kecintaan pada sains sejak dini. ' +
       'Ketiga, Artist & Scientist Talk yang mempertemukan para peneliti kita dengan para pelaku industri dan pengambil kebijakan publik.',
     html:
-      '<div class="s-body" style="display:flex;flex-direction:column;gap:20px;">' +
-      '<div class="grid3" style="gap:20px;">' +
-      '<div class="card" style="padding:24px;border-left:4px solid var(--accent-amber-light);">' +
-      '<div style="font-size:11.5px;font-weight:bold;color:var(--accent-amber-light);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;">Pilar 1 &middot; Kurasi Utama</div>' +
-      '<h3 style="font-family:var(--font-serif);font-size:22px;margin:0 0 10px;color:var(--text-light-h);">Pameran Utama 150&ndash;200 Karya</h3>' +
-      '<p style="font-size:13.5px;line-height:1.5;color:var(--text-light-body);margin:0;">Instalasi imersif, karya audiovisual, seni generatif AI, sensor kinetik, dan karya cetak beresolusi tinggi yang menghubungkan publik langsung dengan sains.</p>' +
+      '<div class="s-body ed-stack">' +
+      '<div class="ed-duo ed-duo--venn">' +
+      '<div class="ed-venn" data-anim="tumbuh">' +
+      '<svg viewBox="0 0 420 372" aria-hidden="true">' +
+      '<g style="mix-blend-mode:multiply">' +
+      '<circle cx="150" cy="134" r="116" fill="#B4791A" fill-opacity=".13" stroke="#B4791A" stroke-width="1.3"/>' +
+      '<circle cx="270" cy="134" r="116" fill="#1A6B65" fill-opacity=".12" stroke="#1A6B65" stroke-width="1.3"/>' +
+      '<circle cx="210" cy="238" r="116" fill="#14141A" fill-opacity=".06" stroke="#14141A" stroke-opacity=".55" stroke-width="1.3"/>' +
+      '</g>' +
+      '<g class="ed-venn__t">' +
+      '<text x="94" y="96" class="k" fill="#B4791A">Pilar 1</text><text x="94" y="118">Kurasi Utama</text>' +
+      '<text x="322" y="96" class="k" fill="#1A6B65">Pilar 2</text><text x="322" y="118">Edukasi Pelajar</text>' +
+      '<text x="210" y="300" class="k" fill="#5A5760">Pilar 3</text><text x="210" y="322">Dialog Kebijakan</text>' +
+      '</g>' +
+      '<circle cx="210" cy="170" r="4" fill="#B4791A"/>' +
+      '<circle class="ed-pulse" cx="210" cy="170" r="11" fill="none" stroke="#B4791A"/>' +
+      '<text x="210" y="198" class="ed-venn__c">Dampak</text>' +
+      '</svg>' +
       '</div>' +
-      '<div class="card" style="padding:24px;border-left:4px solid var(--accent-teal);">' +
-      '<div style="font-size:11.5px;font-weight:bold;color:var(--accent-teal);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;">Pilar 2 &middot; Edukasi Pelajar</div>' +
-      '<h3 style="font-family:var(--font-serif);font-size:22px;margin:0 0 10px;color:var(--text-light-h);">Program Publik & Workshop</h3>' +
-      '<p style="font-size:13.5px;line-height:1.5;color:var(--text-light-body);margin:0;">Pelatihan literasi data dan visualisasi kreatif gratis bagi ribuan pelajar SMA, guru, dan mahasiswa lintas kampus untuk menyemai bibit saintis masa depan.</p>' +
+      '<div class="ed-points ed-group">' +
+      '<div class="ed-point"><div class="ed-point__n">01</div><div>' +
+      '<div class="ed-label">Pilar 1 &middot; Kurasi Utama</div>' +
+      '<div class="ed-point__t ed-point__t--serif">Pameran Utama 150&ndash;200 Karya</div>' +
+      '<p class="ed-point__d">Instalasi imersif, karya audiovisual, seni generatif AI, sensor kinetik, dan karya cetak beresolusi tinggi yang menghubungkan publik langsung dengan sains.</p>' +
+      '</div></div>' +
+      '<div class="ed-point ed-point--alt"><div class="ed-point__n">02</div><div>' +
+      '<div class="ed-label ed-label--alt">Pilar 2 &middot; Edukasi Pelajar</div>' +
+      '<div class="ed-point__t ed-point__t--serif">Program Publik & Workshop</div>' +
+      '<p class="ed-point__d">Pelatihan literasi data dan visualisasi kreatif gratis bagi ribuan pelajar SMA, guru, dan mahasiswa lintas kampus untuk menyemai bibit saintis masa depan.</p>' +
+      '</div></div>' +
+      '<div class="ed-point"><div class="ed-point__n">03</div><div>' +
+      '<div class="ed-label">Pilar 3 &middot; Dialog Kebijakan</div>' +
+      '<div class="ed-point__t ed-point__t--serif">Artist & Scientist Talk</div>' +
+      '<p class="ed-point__d">Forum temu wicara yang mempertemukan saintis MIPA, kurator, pemimpin industri teknologi, dan regulator guna membahas arah riset serta inovasi nasional.</p>' +
+      '</div></div>' +
       '</div>' +
-      '<div class="card" style="padding:24px;border-left:4px solid var(--accent-amber-light);">' +
-      '<div style="font-size:11.5px;font-weight:bold;color:var(--accent-amber-light);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;">Pilar 3 &middot; Dialog Kebijakan</div>' +
-      '<h3 style="font-family:var(--font-serif);font-size:22px;margin:0 0 10px;color:var(--text-light-h);">Artist & Scientist Talk</h3>' +
-      '<p style="font-size:13.5px;line-height:1.5;color:var(--text-light-body);margin:0;">Forum temu wicara yang mempertemukan saintis MIPA, kurator, pemimpin industri teknologi, dan regulator guna membahas arah riset serta inovasi nasional.</p>' +
       '</div>' +
-      '</div>' +
-      '<div style="background:var(--bg-light-card);padding:14px 22px;border-radius:4px;border:1px solid var(--bg-light-border);display:flex;align-items:center;justify-content:space-between;">' +
-      '<span style="font-size:14.5px;color:var(--text-light-h);"><b>Dampak Komprehensif:</b> Mengangkat reputasi riset universitas sekaligus memberi sumbangsih nyata bagi literasi sains masyarakat Indonesia.</span>' +
-      '</div>' +
+      '<p class="ed-statement"><b>Dampak Komprehensif:</b> Mengangkat reputasi riset universitas sekaligus memberi sumbangsih nyata bagi literasi sains masyarakat Indonesia.</p>' +
       '</div>'
   });
 
@@ -62,38 +80,30 @@
       '11% untuk dokumentasi foto/video kelas museum dan liputan publikasi. ' +
       'Serta pos kesekretariatan dan workshop pelajar gratis. Setiap rupiah dialokasikan dengan penuh tanggung jawab.',
     html:
-      '<div class="s-body" style="display:flex;flex-direction:column;gap:18px;">' +
-      '<div style="display:grid;grid-template-columns:1.2fr 0.8fr;gap:24px;align-items:center;">' +
-      '<div style="display:flex;flex-direction:column;gap:10px;">' +
-      '<div class="card" style="padding:14px 18px;background:var(--bg-dark-card);border:1px solid var(--bg-dark-border);display:flex;justify-content:space-between;align-items:center;">' +
-      '<div><b style="color:#fff;font-size:14.5px;">1. Produksi Karya, Display & Venue 3 Kota</b><br><span style="font-size:12px;color:var(--text-dark-muted);">Penciptaan 150-200 karya, tata pamer display, sewa venue, konsumsi</span></div>' +
-      '<div style="text-align:right;"><b style="color:var(--amber);font-size:16px;">Rp 979,3 Jt</b><br><span style="font-size:11px;color:var(--text-dark-muted);">49,7%</span></div>' +
-      '</div>' +
-      '<div class="card" style="padding:14px 18px;background:var(--bg-dark-card);border:1px solid var(--bg-dark-border);display:flex;justify-content:space-between;align-items:center;">' +
-      '<div><b style="color:#fff;font-size:14.5px;">2. Transportasi & Akomodasi Lintas Pulau</b><br><span style="font-size:12px;color:var(--text-dark-muted);">Tiket pesawat, kargo karya Jogja-Lampung-Bali, akomodasi narasumber</span></div>' +
-      '<div style="text-align:right;"><b style="color:var(--amber);font-size:16px;">Rp 337,0 Jt</b><br><span style="font-size:11px;color:var(--text-dark-muted);">17,1%</span></div>' +
-      '</div>' +
-      '<div class="card" style="padding:14px 18px;background:var(--bg-dark-card);border:1px solid var(--bg-dark-border);display:flex;justify-content:space-between;align-items:center;">' +
-      '<div><b style="color:#fff;font-size:14.5px;">3. Honorarium Kurator, Direktur & Tim Kerja</b><br><span style="font-size:12px;color:var(--text-dark-muted);">Director, event director, kurator seni, narasumber ahli, 8 tim kerja</span></div>' +
-      '<div style="text-align:right;"><b style="color:var(--amber);font-size:16px;">Rp 365,0 Jt</b><br><span style="font-size:11px;color:var(--text-dark-muted);">18,5%</span></div>' +
-      '</div>' +
-      '<div class="card" style="padding:14px 18px;background:var(--bg-dark-card);border:1px solid var(--bg-dark-border);display:flex;justify-content:space-between;align-items:center;">' +
-      '<div><b style="color:#fff;font-size:14.5px;">4. Dokumentasi Foto, Video & Liputan Media</b><br><span style="font-size:12px;color:var(--text-dark-muted);">Dokumentasi profesional, katalog hardcover museum, rilis media nasional</span></div>' +
-      '<div style="text-align:right;"><b style="color:var(--amber);font-size:16px;">Rp 225,0 Jt</b><br><span style="font-size:11px;color:var(--text-dark-muted);">11,4%</span></div>' +
-      '</div>' +
-      '<div class="card" style="padding:14px 18px;background:var(--bg-dark-card);border:1px solid var(--bg-dark-border);display:flex;justify-content:space-between;align-items:center;">' +
-      '<div><b style="color:#fff;font-size:14.5px;">5. Persiapan, Kesekretariatan & Workshop Pelajar</b><br><span style="font-size:12px;color:var(--text-dark-muted);">Rapat kerja, internet, listrik, sound system, konsumsi workshop pelajar</span></div>' +
-      '<div style="text-align:right;"><b style="color:var(--amber);font-size:16px;">Rp 64,6 Jt</b><br><span style="font-size:11px;color:var(--text-dark-muted);">3,3%</span></div>' +
+      '<div class="s-body ed-duo ed-duo--budget">' +
+      '<div class="ed-budget">' +
+      '<div class="ed-budget__chart" data-anim="tumbuh">' +
+      V.donut([
+        { pct: 49.7, color: '#E0A537' },
+        { pct: 17.1, color: '#45AEA4' },
+        { pct: 18.5, color: '#D3CFC5' },
+        { pct: 11.4, color: '#B4791A' },
+        { pct: 3.3, color: '#6E6E78' }
+      ], { size: 280, stroke: 22 }) +
+      '<div class="ed-budget__total">' +
+      '<div class="ed-label">Total Kebutuhan Anggaran</div>' +
+      '<div class="ed-budget__v">Rp 1,97 Miliar</div>' +
       '</div>' +
       '</div>' +
-      '<div class="card" style="padding:26px;background:var(--bg-dark-surface);border:2px solid var(--amber);text-align:center;display:flex;flex-direction:column;justify-content:center;">' +
-      '<div style="font-size:12px;font-weight:bold;color:var(--amber);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;">Total Kebutuhan Anggaran</div>' +
-      '<div style="font-family:var(--font-serif);font-size:38px;font-weight:bold;color:#fff;line-height:1.1;margin-bottom:8px;">Rp 1,97 Miliar</div>' +
-      '<p style="font-size:13px;color:var(--text-dark-body);line-height:1.45;margin:0 0 16px;">Biaya total penyelenggaraan tur pameran akbar di 3 kota besar: Yogyakarta, Bandar Lampung, dan Denpasar Bali.</p>' +
-      '<div style="font-size:12px;color:var(--amber);background:rgba(224,165,55,0.12);padding:8px 12px;border-radius:2px;">' +
-      'Dibuka melalui skema Gotong-Royong Kemitraan Alumni & Sponsorship Industri' +
+      '<p class="ed-p ed-p--xs ed-budget__d">Biaya total penyelenggaraan tur pameran akbar di 3 kota besar: Yogyakarta, Bandar Lampung, dan Denpasar Bali.</p>' +
+      '<p class="ed-budget__cta">Dibuka melalui skema Gotong-Royong Kemitraan Alumni & Sponsorship Industri</p>' +
       '</div>' +
-      '</div>' +
+      '<div class="ed-ledger ed-group">' +
+      '<div class="ed-row"><i class="ed-row__dot" style="background:#E0A537"></i><div class="ed-row__txt"><b>1. Produksi Karya, Display & Venue 3 Kota</b><span>Penciptaan 150-200 karya, tata pamer display, sewa venue, konsumsi</span></div><div class="ed-row__val"><b>Rp 979,3 Jt</b><span>49,7%</span></div><div class="ed-row__bar"><i style="width:49.7%;background:#E0A537"></i></div></div>' +
+      '<div class="ed-row"><i class="ed-row__dot" style="background:#45AEA4"></i><div class="ed-row__txt"><b>2. Transportasi & Akomodasi Lintas Pulau</b><span>Tiket pesawat, kargo karya Jogja-Lampung-Bali, akomodasi narasumber</span></div><div class="ed-row__val"><b>Rp 337,0 Jt</b><span>17,1%</span></div><div class="ed-row__bar"><i style="width:17.1%;background:#45AEA4"></i></div></div>' +
+      '<div class="ed-row"><i class="ed-row__dot" style="background:#D3CFC5"></i><div class="ed-row__txt"><b>3. Honorarium Kurator, Direktur & Tim Kerja</b><span>Director, event director, kurator seni, narasumber ahli, 8 tim kerja</span></div><div class="ed-row__val"><b>Rp 365,0 Jt</b><span>18,5%</span></div><div class="ed-row__bar"><i style="width:18.5%;background:#D3CFC5"></i></div></div>' +
+      '<div class="ed-row"><i class="ed-row__dot" style="background:#B4791A"></i><div class="ed-row__txt"><b>4. Dokumentasi Foto, Video & Liputan Media</b><span>Dokumentasi profesional, katalog hardcover museum, rilis media nasional</span></div><div class="ed-row__val"><b>Rp 225,0 Jt</b><span>11,4%</span></div><div class="ed-row__bar"><i style="width:11.4%;background:#B4791A"></i></div></div>' +
+      '<div class="ed-row"><i class="ed-row__dot" style="background:#6E6E78"></i><div class="ed-row__txt"><b>5. Persiapan, Kesekretariatan & Workshop Pelajar</b><span>Rapat kerja, internet, listrik, sound system, konsumsi workshop pelajar</span></div><div class="ed-row__val"><b>Rp 64,6 Jt</b><span>3,3%</span></div><div class="ed-row__bar"><i style="width:3.3%;background:#6E6E78"></i></div></div>' +
       '</div>' +
       '</div>'
   });

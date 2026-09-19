@@ -509,11 +509,9 @@
   W['sponsor-tier-picker'] = function (host) {
     host.innerHTML = '';
 
-    var container = el('div', 'widget-host');
-    container.style.cssText = 'width:100%;height:100%;display:flex;flex-direction:column;gap:16px;';
+    var container = el('div', 'widget-host ed-tier');
 
-    var btnRow = el('div', 'interactive-controls');
-    btnRow.style.cssText = 'display:flex;gap:10px;justify-content:center;margin-bottom:4px;';
+    var btnRow = el('div', 'interactive-controls ed-ladder');
 
     var tiers = [
       {
@@ -577,18 +575,25 @@
       }
     ];
 
+    /* Skala komitmen (juta rupiah) untuk batang pembanding pada tangga paket */
+    var skala = { diamond: [250, 250], gold: [150, 150], silver: [100, 100], lab: [25, 50] };
+
     tiers.forEach(function (t, idx) {
-      var b = el('button', 'btn', t.name);
+      var s = skala[t.id];
+      var b = el('button', 'ed-rung' + (idx === 0 ? ' is-active' : ''),
+        '<span class="ed-rung__name">' + t.name + '</span>' +
+        '<span class="ed-rung__price">' + t.price + '</span>' +
+        '<span class="ed-rung__scale">' +
+        '<i class="ed-rung__max" style="width:' + (s[1] / 250 * 100) + '%"></i>' +
+        '<i class="ed-rung__min" style="width:' + (s[0] / 250 * 100) + '%"></i>' +
+        '</span>' +
+        '<span class="ed-rung__timer"></span>');
       b.type = 'button';
-      b.style.cssText = 'padding:8px 18px;font-size:13.5px;font-weight:bold;border-radius:20px;border:1px solid ' +
-        (idx === 0 ? 'var(--amber)' : 'rgba(255,255,255,0.15)') + ';background:' +
-        (idx === 0 ? 'var(--amber)' : '#181720') + ';color:' + (idx === 0 ? '#0C0B10' : 'var(--text-bright)') + ';cursor:pointer;transition:all .2s;';
       b.setAttribute('data-tier-id', t.id);
       btnRow.appendChild(b);
     });
 
-    var displayCard = el('div', 'card');
-    displayCard.style.cssText = 'flex:1;background:#14141A;border:1px solid rgba(255,255,255,0.08);border-radius:4px;padding:26px 32px;display:flex;flex-direction:column;justify-content:space-between;transition:opacity 280ms cubic-bezier(0.16,1,0.3,1),transform 280ms cubic-bezier(0.16,1,0.3,1);';
+    var displayCard = el('div', 'ed-tier__detail');
 
     container.appendChild(btnRow);
     container.appendChild(displayCard);
@@ -596,26 +601,26 @@
 
     function renderTier(t) {
       displayCard.innerHTML =
-        '<div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px;">' +
+        '<div class="ed-tier__head">' +
         '<div>' +
-        '<span style="display:inline-block;padding:3px 10px;font-size:11px;font-weight:bold;letter-spacing:1px;text-transform:uppercase;background:#24232C;color:var(--amber);border:1px solid rgba(224,165,55,0.3);border-radius:2px;margin-bottom:8px;">' + t.badge + '</span>' +
-        '<h3 style="margin:0;font-family:Cambria,serif;font-size:28px;color:#FFFFFF;font-weight:normal;">' + t.name + '</h3>' +
-        '<p style="margin:6px 0 0;font-size:14.5px;color:var(--text-bright);">' + t.summary + '</p>' +
+        '<div class="ed-label">' + t.badge + '</div>' +
+        '<h3 class="ed-tier__name">' + t.name + '</h3>' +
+        '<p class="ed-tier__sum">' + t.summary + '</p>' +
         '</div>' +
-        '<div style="text-align:right;">' +
-        '<div style="font-family:Cambria,serif;font-size:32px;font-weight:bold;color:var(--amber);line-height:1;">' + t.price + '</div>' +
-        '<div style="font-size:12px;color:var(--text-muted);margin-top:4px;">Komitmen Kolaborasi</div>' +
+        '<div class="ed-tier__price">' +
+        '<b>' + t.price + '</b>' +
+        '<span>Komitmen Kolaborasi</span>' +
         '</div>' +
         '</div>' +
-        '<div style="flex:1;margin:10px 0 16px;">' +
-        '<div style="font-size:12px;font-weight:bold;text-transform:uppercase;letter-spacing:1px;color:var(--amber);margin:0 0 10px;">Fasilitas & Manfaat Kemitraan:</div>' +
-        '<ul style="display:grid;grid-template-columns:1fr 1fr;gap:8px 28px;font-size:14px;color:var(--text-bright);padding-left:18px;margin:0;">' +
-        t.perks.map(function (p) { return '<li style="line-height:1.45;">' + p + '</li>'; }).join('') +
+        '<div class="ed-tier__perks">' +
+        '<div class="ed-label ed-label--muted">Fasilitas & Manfaat Kemitraan:</div>' +
+        '<ul class="ed-perks">' +
+        t.perks.map(function (p) { return '<li>' + p + '</li>'; }).join('') +
         '</ul>' +
         '</div>' +
-        '<div style="display:flex;justify-content:space-between;align-items:center;padding-top:12px;border-top:1px solid rgba(255,255,255,0.08);font-size:13.5px;color:var(--text-muted);">' +
-        '<span>Cakupan Wilayah: <b style="color:var(--text-bright);">' + t.cities + '</b></span>' +
-        '<span>Narahubung: <b style="color:var(--amber);">Zuhri (+62 823-9207-4524)</b> &middot; mipa@ugm.ac.id</span>' +
+        '<div class="ed-tier__foot">' +
+        '<span>Cakupan Wilayah: <b>' + t.cities + '</b></span>' +
+        '<span>Narahubung: <b class="ed-acc">Zuhri (+62 823-9207-4524)</b> &middot; mipa@ugm.ac.id</span>' +
         '</div>';
     }
 
@@ -626,27 +631,25 @@
     var autoTimer = null;
     var fadeTimer = null;
 
-    function switchTier(idx) {
-      currentIdx = idx;
+    function tandaiAktif(idx) {
       allBtns.forEach(function (b, bIdx) {
+        b.classList.remove('is-active');
         if (bIdx === idx) {
-          b.style.background = 'var(--amber)';
-          b.style.color = '#0C0B10';
-          b.style.borderColor = 'var(--amber)';
-        } else {
-          b.style.background = '#181720';
-          b.style.color = 'var(--text-bright)';
-          b.style.borderColor = 'rgba(255,255,255,0.15)';
+          void b.offsetWidth; /* memulai ulang garis waktu auto-switch */
+          b.classList.add('is-active');
         }
       });
-      displayCard.style.opacity = '0';
-      displayCard.style.transform = 'translateY(6px)';
+    }
+
+    function switchTier(idx) {
+      currentIdx = idx;
+      tandaiAktif(idx);
+      displayCard.classList.add('is-swapping');
       if (fadeTimer) clearTimeout(fadeTimer);
       fadeTimer = setTimeout(function () {
         renderTier(tiers[idx]);
-        displayCard.style.opacity = '1';
-        displayCard.style.transform = 'none';
-      }, 70);
+        displayCard.classList.remove('is-swapping');
+      }, 90);
     }
 
     function startAutoSwitch() {
@@ -664,6 +667,7 @@
       });
     });
 
+    tandaiAktif(0);
     startAutoSwitch();
 
     return function () {
@@ -685,8 +689,7 @@
   W['methods-matrix'] = function (host) {
     host.innerHTML = '';
 
-    var container = el('div', 'widget-host');
-    container.style.cssText = 'width:100%;height:100%;display:flex;flex-direction:column;gap:14px;';
+    var container = el('div', 'widget-host ed-mm');
 
     var prodiData = [
       { id: 'ilkom', name: 'Ilmu Komputer', karya: 'Peta Keraguan', metode: 'Ganti Pertanyaan', data: '750 titik latih SVM & entropi mesin', file: 'assets/figures/karya_ilkom_keraguan.jpg', desc: 'Akurasi adalah angka yang menenangkan; keraguan adalah gambar yang mengganggu dan lebih jujur.' },
@@ -699,81 +702,72 @@
       { id: 'geo', name: 'Geofisika', karya: 'Cincin Bumi', metode: 'Ganti Penanda', data: '365 hari rekaman gerak tanah seismik', file: 'assets/figures/karya_geofisika_cincin.jpg', desc: '22 cincin punya duri gempa, sisanya bumi yang tenang. Ketenangan bumi pun adalah data yang berharga.' }
     ];
 
-    var btnRow = el('div', 'interactive-controls');
-    btnRow.style.cssText = 'display:grid;grid-template-columns:repeat(8, 1fr);gap:6px;';
+    var btnRow = el('div', 'interactive-controls ed-tabs');
 
     prodiData.forEach(function (p, i) {
-      var b = el('button', 'btn', p.name);
+      var b = el('button', 'ed-tab' + (i === 0 ? ' is-active' : ''),
+        '<span>' + p.name + '</span><i class="ed-tab__timer"></i>');
       b.type = 'button';
-      b.style.cssText = 'padding:8px 4px;font-size:12px;font-weight:bold;border-radius:3px;border:1px solid ' +
-        (i === 0 ? 'var(--amber)' : 'rgba(255,255,255,0.15)') + ';background:' +
-        (i === 0 ? 'var(--amber)' : '#181720') + ';color:' + (i === 0 ? '#0C0B10' : 'var(--text-bright)') + ';cursor:pointer;text-align:center;line-height:1.2;';
       btnRow.appendChild(b);
     });
 
-    var viewWrap = el('div', 'art-layout');
-    viewWrap.style.cssText = 'flex:1;min-height:390px;transition:opacity 280ms cubic-bezier(0.16,1,0.3,1),transform 280ms cubic-bezier(0.16,1,0.3,1);';
+    var viewWrap = el('div', 'ed-mm__view');
 
     container.appendChild(btnRow);
     container.appendChild(viewWrap);
     host.appendChild(container);
 
-    function showItem(p) {
+    function dua(n) { return (n < 10 ? '0' : '') + n; }
+
+    function showItem(p, idx) {
       viewWrap.innerHTML =
-        '<div class="art-figure" style="background:#08070B;border:1px solid rgba(255,255,255,0.08);border-radius:4px;">' +
+        '<figure class="ed-mm__fig">' +
         '<img src="' + p.file + '" alt="' + p.karya + '">' +
-        '<div class="art-figure__caption">' +
-        '<b>' + p.karya + '</b> &middot; ' + p.name +
+        '<figcaption><b>' + p.karya + '</b> &middot; ' + p.name + '</figcaption>' +
+        '</figure>' +
+        '<div class="ed-mm__txt">' +
+        '<div class="ed-mm__count">' + dua(idx + 1) + ' <span>/ ' + dua(prodiData.length) + '</span></div>' +
+        '<div class="ed-label">' + p.metode + '</div>' +
+        '<h3 class="ed-mm__title">' + p.karya + '</h3>' +
+        '<p class="ed-mm__field">Bidang: <b>' + p.name + ' FMIPA UGM</b></p>' +
+        '<div class="ed-mm__sec">' +
+        '<div class="ed-label ed-label--muted">Bahan Datanya:</div>' +
+        '<div class="ed-mm__v">' + p.data + '</div>' +
         '</div>' +
+        '<div class="ed-mm__sec">' +
+        '<div class="ed-label ed-label--muted">Makna yang Ditawarkan:</div>' +
+        '<div class="ed-mm__v ed-mm__v--lead">' + p.desc + '</div>' +
         '</div>' +
-        '<div class="card" style="background:#14141A;border:1px solid rgba(255,255,255,0.08);border-radius:4px;padding:24px;display:flex;flex-direction:column;justify-content:space-between;">' +
-        '<div>' +
-        '<div style="font-size:12px;font-weight:bold;letter-spacing:1px;color:var(--amber);text-transform:uppercase;margin-bottom:6px;">' + p.metode + '</div>' +
-        '<h3 style="font-family:Cambria,serif;margin:0 0 4px;font-size:26px;color:#FFFFFF;">' + p.karya + '</h3>' +
-        '<p style="font-size:14px;color:var(--text-muted);margin:0 0 16px;">Bidang: <b>' + p.name + ' FMIPA UGM</b></p>' +
-        '<div style="margin-bottom:12px;">' +
-        '<div style="font-size:12px;font-weight:bold;color:var(--amber);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:2px;">Bahan Datanya:</div>' +
-        '<div style="font-size:14.5px;color:var(--text-bright);">' + p.data + '</div>' +
-        '</div>' +
-        '<div>' +
-        '<div style="font-size:12px;font-weight:bold;color:var(--amber);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:2px;">Makna yang Ditawarkan:</div>' +
-        '<div style="font-size:14.5px;line-height:1.5;color:var(--text-bright);">' + p.desc + '</div>' +
-        '</div>' +
-        '</div>' +
-        '<div style="font-size:13px;color:var(--text-muted);border-top:1px solid rgba(255,255,255,0.08);padding-top:10px;margin-top:10px;">' +
-        'Dihasilkan dari ~200 baris Python & matplotlib murni tanpa menggambar tangan.' +
-        '</div>' +
+        '<div class="ed-mm__foot">Dihasilkan dari ~200 baris Python & matplotlib murni tanpa menggambar tangan.</div>' +
         '</div>';
     }
 
-    showItem(prodiData[0]);
+    showItem(prodiData[0], 0);
 
     var buttons = btnRow.querySelectorAll('button');
     var currentIdx = 0;
     var autoTimer = null;
     var fadeTimer = null;
 
-    function switchProdi(idx) {
-      currentIdx = idx;
+    function tandaiAktif(idx) {
       buttons.forEach(function (b, bIdx) {
+        b.classList.remove('is-active');
         if (bIdx === idx) {
-          b.style.background = 'var(--amber)';
-          b.style.color = '#0C0B10';
-          b.style.borderColor = 'var(--amber)';
-        } else {
-          b.style.background = '#181720';
-          b.style.color = 'var(--text-bright)';
-          b.style.borderColor = 'rgba(255,255,255,0.15)';
+          void b.offsetWidth; /* memulai ulang garis waktu auto-switch */
+          b.classList.add('is-active');
         }
       });
-      viewWrap.style.opacity = '0';
-      viewWrap.style.transform = 'translateY(6px)';
+    }
+
+    function switchProdi(idx) {
+      currentIdx = idx;
+      tandaiAktif(idx);
+      viewWrap.classList.add('is-swapping');
       if (fadeTimer) clearTimeout(fadeTimer);
       fadeTimer = setTimeout(function () {
-        showItem(prodiData[idx]);
-        viewWrap.style.opacity = '1';
-        viewWrap.style.transform = 'none';
-      }, 70);
+        showItem(prodiData[idx], idx);
+        viewWrap.classList.remove('is-swapping');
+      }, 90);
     }
 
     function startAutoSwitch() {
@@ -791,6 +785,7 @@
       });
     });
 
+    tandaiAktif(0);
     startAutoSwitch();
 
     // Preload semua gambar prodi agar transisi selalu instan tanpa jeda muat

@@ -6,6 +6,7 @@
 (function () {
   'use strict';
   var D = (window.DECK = window.DECK || []);
+  var V = window.VIZ;
 
   /* ---------------------------------------------------------------- Slide 3 */
   D.push({
@@ -21,27 +22,30 @@
       'Jika data lab kita berubah satu desimal saja, bentuk visual karyanya ikut bereaksi. ' +
       'Inilah cara paling elegan untuk mengomunikasikan riset ke publik luas: memikat imajinasi mereka tanpa mengorbankan integritas data ilmiah.',
     html:
-      '<div class="s-body" style="display:flex;flex-direction:column;justify-content:center;gap:26px;">' +
-      '<div class="grid3" style="gap:20px;">' +
-      '<div class="card" style="padding:26px 24px;border-left:4px solid var(--accent-amber-light);">' +
-      '<div style="font-size:12px;font-weight:bold;color:var(--accent-amber-light);letter-spacing:1px;text-transform:uppercase;margin-bottom:8px;">01 &middot; Integritas Data Mutlak</div>' +
-      '<h3 style="font-family:var(--font-serif);font-size:22px;margin:0 0 10px;color:var(--text-light-h);">Berakar dari Data Riil</h3>' +
-      '<p style="font-size:14.5px;line-height:1.55;color:var(--text-light-body);margin:0;">Bahan baku karya adalah 100% data nyata hasil observasi lapangan, eksperimen laboratorium, dan komputasi sains sivitas MIPA tanpa rekayasa palsu.</p>' +
+      '<div class="s-body ed-stack">' +
+      '<div class="ed-cols ed-cols--3 ed-group">' +
+      '<div class="ed-col">' +
+      V.illus('data') +
+      '<div class="ed-label">01 &middot; Integritas Data Mutlak</div>' +
+      '<h3 class="ed-h3">Berakar dari Data Riil</h3>' +
+      '<p class="ed-p">Bahan baku karya adalah 100% data nyata hasil observasi lapangan, eksperimen laboratorium, dan komputasi sains sivitas MIPA tanpa rekayasa palsu.</p>' +
       '</div>' +
-      '<div class="card" style="padding:26px 24px;border-left:4px solid var(--accent-teal);">' +
-      '<div style="font-size:12px;font-weight:bold;color:var(--accent-teal);letter-spacing:1px;text-transform:uppercase;margin-bottom:8px;">02 &middot; Kepekaan Rasa Estetik</div>' +
-      '<h3 style="font-family:var(--font-serif);font-size:22px;margin:0 0 10px;color:var(--text-light-h);">Menyentuh Batin Publik</h3>' +
-      '<p style="font-size:14.5px;line-height:1.55;color:var(--text-light-body);margin:0;">Mengubah grafik rumit menjadi pahatan visual, instalasi sensorik, dan alunan suara yang membuat orang awam terpukau dan peduli pada riset kita.</p>' +
+      '<div class="ed-col">' +
+      V.illus('rasa') +
+      '<div class="ed-label ed-label--alt">02 &middot; Kepekaan Rasa Estetik</div>' +
+      '<h3 class="ed-h3">Menyentuh Batin Publik</h3>' +
+      '<p class="ed-p">Mengubah grafik rumit menjadi pahatan visual, instalasi sensorik, dan alunan suara yang membuat orang awam terpukau dan peduli pada riset kita.</p>' +
       '</div>' +
-      '<div class="card" style="padding:26px 24px;border-left:4px solid var(--accent-amber-light);">' +
-      '<div style="font-size:12px;font-weight:bold;color:var(--accent-amber-light);letter-spacing:1px;text-transform:uppercase;margin-bottom:8px;">03 &middot; Ruang Dialog Kebangsaan</div>' +
-      '<h3 style="font-family:var(--font-serif);font-size:22px;margin:0 0 10px;color:var(--text-light-h);">Sains Berdampak Luas</h3>' +
-      '<p style="font-size:14.5px;line-height:1.55;color:var(--text-light-body);margin:0;">Membuka ruang temu baru antara peneliti, budayawan, industri, dan pembuat kebijakan untuk merumuskan masa depan peradaban Indonesia.</p>' +
+      '<div class="ed-col">' +
+      V.illus('dialog') +
+      '<div class="ed-label">03 &middot; Ruang Dialog Kebangsaan</div>' +
+      '<h3 class="ed-h3">Sains Berdampak Luas</h3>' +
+      '<p class="ed-p">Membuka ruang temu baru antara peneliti, budayawan, industri, dan pembuat kebijakan untuk merumuskan masa depan peradaban Indonesia.</p>' +
       '</div>' +
       '</div>' +
-      '<div style="background:var(--bg-light-card);padding:16px 22px;border-radius:4px;border:1px solid var(--bg-light-border);display:flex;align-items:center;justify-content:space-between;">' +
-      '<span style="font-size:15px;color:var(--text-light-h);font-style:italic;">"Ketika sains berhenti bersikap dingin dan mulai berbicara dengan bahasa seni, masyarakat tidak lagi takut pada sains &mdash; mereka mencintainya."</span>' +
-      '<span style="font-size:12.5px;font-weight:bold;color:var(--accent-amber-light);letter-spacing:1px;text-transform:uppercase;">Data Art 2026</span>' +
+      '<div class="ed-pull">' +
+      '<p class="ed-quote">"Ketika sains berhenti bersikap dingin dan mulai berbicara dengan bahasa seni, masyarakat tidak lagi takut pada sains &mdash; mereka mencintainya."</p>' +
+      '<span class="ed-label">Data Art 2026</span>' +
       '</div>' +
       '</div>'
   });
@@ -60,36 +64,34 @@
       'serta Dr. Michael Hoch, fisikawan senior di CERN Jenewa yang mendirikan proyek global art@CMS. ' +
       'Dan yang paling membanggakan: FMIPA UGM adalah rumah riset tempat karya-karya berkelas dunia ini dilahirkan.',
     html:
-      '<div class="s-body" style="display:grid;grid-template-columns:1.2fr 0.8fr;gap:28px;align-items:center;">' +
-      '<div class="grid2" style="gap:14px;">' +
-      '<div class="card" style="padding:18px;background:var(--bg-dark-card);border:1px solid var(--bg-dark-border);">' +
-      '<div style="font-size:11px;font-weight:bold;color:var(--amber);letter-spacing:1px;text-transform:uppercase;margin-bottom:4px;">Inisiator & Tokoh Kreatif</div>' +
-      '<h4 style="font-family:var(--font-serif);font-size:18px;margin:0 0 6px;color:#fff;">Wishnutama Kusubandio</h4>' +
-      '<p style="font-size:13px;line-height:1.45;color:var(--text-dark-body);margin:0;">Praktisi industri kreatif nasional, entrepreneur, dan perancang perhelatan berskala internasional di tanah air.</p>' +
+      '<div class="s-body ed-duo ed-duo--roster">' +
+      '<div class="ed-roster ed-group">' +
+      '<div class="ed-person">' +
+      '<div class="ed-label">Inisiator & Tokoh Kreatif</div>' +
+      '<h4 class="ed-h4">Wishnutama Kusubandio</h4>' +
+      '<p class="ed-p ed-p--sm">Praktisi industri kreatif nasional, entrepreneur, dan perancang perhelatan berskala internasional di tanah air.</p>' +
       '</div>' +
-      '<div class="card" style="padding:18px;background:var(--bg-dark-card);border:1px solid var(--bg-dark-border);">' +
-      '<div style="font-size:11px;font-weight:bold;color:var(--amber);letter-spacing:1px;text-transform:uppercase;margin-bottom:4px;">Saintis & Penggagas</div>' +
-      '<h4 style="font-family:var(--font-serif);font-size:18px;margin:0 0 6px;color:#fff;">Daniel Oscar Baskoro</h4>' +
-      '<p style="font-size:13px;line-height:1.45;color:var(--text-dark-body);margin:0;">Saintis data, akademisi, dan inovator teknologi yang konsisten menjembatani riset digital dengan kemanusiaan.</p>' +
+      '<div class="ed-person">' +
+      '<div class="ed-label">Saintis & Penggagas</div>' +
+      '<h4 class="ed-h4">Daniel Oscar Baskoro</h4>' +
+      '<p class="ed-p ed-p--sm">Saintis data, akademisi, dan inovator teknologi yang konsisten menjembatani riset digital dengan kemanusiaan.</p>' +
       '</div>' +
-      '<div class="card" style="padding:18px;background:var(--bg-dark-card);border:1px solid var(--bg-dark-border);">' +
-      '<div style="font-size:11px;font-weight:bold;color:var(--amber);letter-spacing:1px;text-transform:uppercase;margin-bottom:4px;">Kurator & Budayawan</div>' +
-      '<h4 style="font-family:var(--font-serif);font-size:18px;margin:0 0 6px;color:#fff;">Semi Ikra Anggara</h4>' +
-      '<p style="font-size:13px;line-height:1.45;color:var(--text-dark-body);margin:0;">Kurator seni dan pegiat manajemen festival kebudayaan yang berpengalaman mengangkat karya ke ranah publik.</p>' +
+      '<div class="ed-person">' +
+      '<div class="ed-label">Kurator & Budayawan</div>' +
+      '<h4 class="ed-h4">Semi Ikra Anggara</h4>' +
+      '<p class="ed-p ed-p--sm">Kurator seni dan pegiat manajemen festival kebudayaan yang berpengalaman mengangkat karya ke ranah publik.</p>' +
       '</div>' +
-      '<div class="card" style="padding:18px;background:var(--bg-dark-card);border:1px solid var(--bg-dark-border);">' +
-      '<div style="font-size:11px;font-weight:bold;color:var(--amber);letter-spacing:1px;text-transform:uppercase;margin-bottom:4px;">Konsorsium Riset Utama</div>' +
-      '<h4 style="font-family:var(--font-serif);font-size:18px;margin:0 0 6px;color:#fff;">Sivitas FMIPA UGM</h4>' +
-      '<p style="font-size:13px;line-height:1.45;color:var(--text-dark-body);margin:0;">Para dosen, mahasiswa, dan peneliti laboratorium sebagai penyedia data saintifik otentik lintas 8 program studi.</p>' +
+      '<div class="ed-person">' +
+      '<div class="ed-label ed-label--alt">Konsorsium Riset Utama</div>' +
+      '<h4 class="ed-h4">Sivitas FMIPA UGM</h4>' +
+      '<p class="ed-p ed-p--sm">Para dosen, mahasiswa, dan peneliti laboratorium sebagai penyedia data saintifik otentik lintas 8 program studi.</p>' +
       '</div>' +
       '</div>' +
-      '<div class="card" style="background:var(--bg-dark-surface);border:1px solid rgba(224,165,55,0.3);padding:22px;text-align:center;">' +
-      '<div class="art-figure" style="height:210px;margin-bottom:12px;background:#000;border-radius:3px;">' +
-      '<img src="assets/figures/michael_hoch_cern.jpg" alt="Dr. Michael Hoch CERN">' +
-      '</div>' +
-      '<div style="font-size:11.5px;font-weight:bold;color:var(--amber);text-transform:uppercase;letter-spacing:1px;margin-bottom:3px;">Dukungan Global &middot; CERN art@CMS</div>' +
-      '<h4 style="font-family:var(--font-serif);font-size:17px;color:#fff;margin:0 0 6px;">Dr. Michael Hoch (Austria & CERN)</h4>' +
-      '<p style="font-size:12.5px;color:var(--text-dark-muted);line-height:1.4;margin:0;">Fisikawan partikel eksperimen CMS & ALICE di CERN Jenewa, memelopori dialog seni-sains dunia yang kini dihadirkan di UGM.</p>' +
+      '<div class="ed-feature">' +
+      '<div class="ed-photo ed-photo--strip"><img src="assets/figures/inisiator_potret.jpg" alt="Dr. Michael Hoch CERN"></div>' +
+      '<div class="ed-label">Dukungan Global &middot; CERN art@CMS</div>' +
+      '<h4 class="ed-h4">Dr. Michael Hoch (Austria & CERN)</h4>' +
+      '<p class="ed-p ed-p--sm">Fisikawan partikel eksperimen CMS & ALICE di CERN Jenewa, memelopori dialog seni-sains dunia yang kini dihadirkan di UGM.</p>' +
       '</div>' +
       '</div>'
   });

@@ -6,10 +6,12 @@
 (function () {
   'use strict';
   var D = (window.DECK = window.DECK || []);
+  var V = window.VIZ;
 
   /* ---------------------------------------------------------------- Slide 5 */
   D.push({
     id: 's-05',
+    cls: 'ed-split',
     chapter: 2,
     dark: false,
     num: 5,
@@ -21,38 +23,40 @@
       'Yang paling membanggakan kita semua: 11 dosen FMIPA turun langsung memamerkan risetnya, berkolaborasi akrab bersama 9 mahasiswa dan 7 alumni. ' +
       'Selama satu pekan, ribuan pengunjung dari masyarakat umum, pelajar, hingga kurator seni terkesima melihat bagaimana sains kampus tampil memukau.',
     html:
-      '<div class="s-body" style="display:flex;flex-direction:column;gap:20px;">' +
-      '<div class="stat-row" style="grid-template-columns:repeat(4, 1fr);gap:16px;">' +
-      '<div class="card" style="padding:18px 20px;text-align:center;border-top:3px solid var(--accent-amber-light);">' +
-      '<div class="stat-num" style="color:var(--accent-amber-light);font-size:42px;font-family:var(--font-serif);font-weight:bold;line-height:1;">42</div>' +
-      '<div class="stat-lbl" style="font-size:13px;font-weight:bold;color:var(--text-light-h);margin-top:6px;">Karya Terkurasi</div>' +
-      '<p style="font-size:12px;color:var(--text-light-muted);margin:4px 0 0;">18 visual art, 9 video interaktif, 9 instalasi, 6 sound/media</p>' +
+      '<div class="ed-bleed ed-collage" data-anim="pudar">' +
+      '<figure class="ed-collage__a"><img src="assets/figures/data_art_2025_exhibit.jpg" alt="Pameran Data Art 2025"></figure>' +
+      '<figure class="ed-collage__b"><img src="assets/figures/evaluasi_2025_3.jpg" alt="Dokumentasi karya instalasi Data Art 2025"></figure>' +
+      '<figure class="ed-collage__c"><img src="assets/figures/evaluasi_2025_2.jpg" alt="Dokumentasi karya perangkat Data Art 2025"></figure>' +
       '</div>' +
-      '<div class="card" style="padding:18px 20px;text-align:center;border-top:3px solid var(--accent-teal);">' +
-      '<div class="stat-num" style="color:var(--accent-teal);font-size:42px;font-family:var(--font-serif);font-weight:bold;line-height:1;">27</div>' +
-      '<div class="stat-lbl" style="font-size:13px;font-weight:bold;color:var(--text-light-h);margin-top:6px;">Pameris Berbakat</div>' +
-      '<p style="font-size:12px;color:var(--text-light-muted);margin:4px 0 0;">Kolaborasi solid: <b>11 Dosen</b>, <b>9 Mahasiswa</b>, <b>7 Alumni</b></p>' +
+      '<div class="s-body ed-stack">' +
+      '<div class="ed-stats ed-group">' +
+      '<div class="ed-stat">' +
+      '<div class="ed-stat__v">42</div>' +
+      '<div class="ed-stat__l">Karya Terkurasi</div>' +
+      V.units([{ n: 18, color: '#B4791A' }, { n: 9, color: '#1A6B65' }, { n: 9, color: '#D9B77A' }, { n: 6, color: '#A6A29A' }], { perRow: 21 }) +
+      '<div class="ed-legend"><span><i style="background:#B4791A"></i>18 visual art</span><span><i style="background:#1A6B65"></i>9 video interaktif</span><span><i style="background:#D9B77A"></i>9 instalasi</span><span><i style="background:#A6A29A"></i>6 sound/media</span></div>' +
       '</div>' +
-      '<div class="card" style="padding:18px 20px;text-align:center;border-top:3px solid var(--accent-amber-light);">' +
-      '<div class="stat-num" style="color:var(--accent-amber-light);font-size:42px;font-family:var(--font-serif);font-weight:bold;line-height:1;">Ribuan</div>' +
-      '<div class="stat-lbl" style="font-size:13px;font-weight:bold;color:var(--text-light-h);margin-top:6px;">Pengunjung Galeri</div>' +
-      '<p style="font-size:12px;color:var(--text-light-muted);margin:4px 0 0;">Masyarakat luas, pelajar, keluarga, dan penikmat seni</p>' +
+      '<div class="ed-stat">' +
+      '<div class="ed-stat__v ed-stat__v--alt">27</div>' +
+      '<div class="ed-stat__l">Pameris Berbakat</div>' +
+      V.units([{ n: 11, color: '#1A6B65' }, { n: 9, color: '#B4791A' }, { n: 7, color: '#A6A29A' }], { perRow: 14 }) +
+      '<div class="ed-legend">Kolaborasi solid: <span><i style="background:#1A6B65"></i><b>11 Dosen</b></span><span><i style="background:#B4791A"></i><b>9 Mahasiswa</b></span><span><i style="background:#A6A29A"></i><b>7 Alumni</b></span></div>' +
       '</div>' +
-      '<div class="card" style="padding:18px 20px;text-align:center;border-top:3px solid var(--accent-teal);">' +
-      '<div class="stat-num" style="color:var(--accent-teal);font-size:42px;font-family:var(--font-serif);font-weight:bold;line-height:1;">10+</div>' +
-      '<div class="stat-lbl" style="font-size:13px;font-weight:bold;color:var(--text-light-h);margin-top:6px;">Media Nasional</div>' +
-      '<p style="font-size:12px;color:var(--text-light-muted);margin:4px 0 0;">Liputan pers luas (Kompas, Kumparan, Republika, dll.)</p>' +
+      '<div class="ed-stat">' +
+      '<div class="ed-stat__v">Ribuan</div>' +
+      '<div class="ed-stat__l">Pengunjung Galeri</div>' +
+      '<p class="ed-stat__d">Masyarakat luas, pelajar, keluarga, dan penikmat seni</p>' +
+      '</div>' +
+      '<div class="ed-stat">' +
+      '<div class="ed-stat__v ed-stat__v--alt">10+</div>' +
+      '<div class="ed-stat__l">Media Nasional</div>' +
+      '<p class="ed-stat__d">Liputan pers luas (Kompas, Kumparan, Republika, dll.)</p>' +
       '</div>' +
       '</div>' +
-      '<div style="display:grid;grid-template-columns:1.25fr 0.75fr;gap:24px;align-items:center;">' +
-      '<div class="art-figure" style="height:250px;background:#E5E1D8;border-radius:3px;">' +
-      '<img src="assets/figures/data_art_2025_exhibit.jpg" alt="Pameran Data Art 2025">' +
-      '</div>' +
-      '<div class="card" style="padding:22px;background:var(--bg-light-card);border:1px solid var(--bg-light-border);">' +
-      '<h4 style="font-family:var(--font-serif);font-size:18px;margin:0 0 10px;color:var(--text-light-h);">Keterlibatan Sivitas yang Membanggakan</h4>' +
-      '<p style="font-size:14px;line-height:1.55;color:var(--text-light-body);margin:0 0 10px;">Untuk pertama kalinya dalam sejarah, para akademisi MIPA berdiri di samping karya seni yang dihitung langsung dari data penelitian laboratorium mereka sendiri.</p>' +
-      '<p style="font-size:13px;color:var(--accent-teal);font-weight:bold;margin:0;">Fondasi kokoh ini menjadi modal berharga menyongsong gelaran akbar 2026.</p>' +
-      '</div>' +
+      '<div class="ed-note">' +
+      '<h4 class="ed-h4">Keterlibatan Sivitas yang Membanggakan</h4>' +
+      '<p class="ed-p ed-p--sm">Untuk pertama kalinya dalam sejarah, para akademisi MIPA berdiri di samping karya seni yang dihitung langsung dari data penelitian laboratorium mereka sendiri.</p>' +
+      '<p class="ed-p ed-p--sm ed-em">Fondasi kokoh ini menjadi modal berharga menyongsong gelaran akbar 2026.</p>' +
       '</div>' +
       '</div>'
   });
@@ -72,32 +76,32 @@
       'Dan Prof. Indah Emilia menerjemahkan struktur aljabar murni ke dalam visualisasi eksistensial Kami Hadir 1 & 2. ' +
       'Ini adalah bukti sahih bahwa dosen MIPA UGM bukan hanya ilmuwan tangguh, tetapi juga seniman peradaban.',
     html:
-      '<div class="s-body" style="display:flex;flex-direction:column;gap:16px;">' +
-      '<div class="grid3" style="gap:18px;">' +
-      '<div class="card" style="padding:16px;background:var(--bg-dark-card);border:1px solid var(--bg-dark-border);">' +
-      '<div class="art-figure" style="height:190px;background:#000;margin-bottom:12px;border-radius:2px;">' +
-      '<img src="assets/figures/sound_of_seismograph.jpg" alt="Sound of Seismograph Dr. Wiwit Suryanto" style="width:100%;height:100%;object-fit:cover;">' +
-      '</div>' +
-      '<div style="font-size:11px;font-weight:bold;color:var(--amber);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px;">Geofisika &middot; Sound of Seismograph</div>' +
-      '<h4 style="font-family:var(--font-serif);font-size:17px;color:#fff;margin:0 0 6px;">Dr.rer.nat. Wiwit Suryanto, S.Si., M.Si.</h4>' +
-      '<p style="font-size:13px;color:var(--text-dark-body);line-height:1.45;margin:0;">Sonifikasi data gempa Gunung Etna menjadi harmoni multi-instrumen (piano, string, gong) dan visual spasial yang selaras dengan aktivitas vulkanik.</p>' +
-      '</div>' +
-      '<div class="card" style="padding:16px;background:var(--bg-dark-card);border:1px solid var(--bg-dark-border);">' +
-      '<div class="art-figure" style="height:190px;background:#000;margin-bottom:12px;border-radius:2px;">' +
-      '<img src="assets/figures/quantum_batik.jpg" alt="Quantum Batik Prof. Sholihun" style="width:100%;height:100%;object-fit:cover;">' +
-      '</div>' +
-      '<div style="font-size:11px;font-weight:bold;color:var(--amber);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px;">Fisika &middot; Quantum Batik</div>' +
-      '<h4 style="font-family:var(--font-serif);font-size:17px;color:#fff;margin:0 0 6px;">Prof. Sholihun, S.Si., Ph.D.Sc.</h4>' +
-      '<p style="font-size:13px;color:var(--text-dark-body);line-height:1.45;margin:0;">Simulasi kerapatan elektron dan fisika komputasi material kuantum yang berpadu dengan keanggunan motif batik tradisional Nusantara.</p>' +
-      '</div>' +
-      '<div class="card" style="padding:16px;background:var(--bg-dark-card);border:1px solid var(--bg-dark-border);">' +
-      '<div class="art-figure" style="height:190px;background:#000;margin-bottom:12px;border-radius:2px;">' +
-      '<img src="assets/figures/kami_hadir.jpg" alt="Kami Hadir Prof. Indah Emilia" style="width:100%;height:100%;object-fit:cover;">' +
-      '</div>' +
-      '<div style="font-size:11px;font-weight:bold;color:var(--amber);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px;">Matematika &middot; Kami Hadir 1 & 2</div>' +
-      '<h4 style="font-family:var(--font-serif);font-size:17px;color:#fff;margin:0 0 6px;">Prof. Dr.rer.nat. Indah Emilia, M.Si.</h4>' +
-      '<p style="font-size:13px;color:var(--text-dark-body);line-height:1.45;margin:0;">Eksplorasi struktur aljabar abstrak murni yang divisualisasikan menjadi lanskap keberadaan manusia di tengah semesta data.</p>' +
-      '</div>' +
+      '<div class="s-body">' +
+      '<div class="ed-gallery ed-group">' +
+      '<figure class="ed-work">' +
+      '<div class="ed-work__img"><img src="assets/figures/sound_of_seismograph.jpg" alt="Sound of Seismograph Dr. Wiwit Suryanto"></div>' +
+      '<figcaption>' +
+      '<div class="ed-label">Geofisika &middot; Sound of Seismograph</div>' +
+      '<h4 class="ed-h4">Dr.rer.nat. Wiwit Suryanto, S.Si., M.Si.</h4>' +
+      '<p class="ed-p ed-p--sm">Sonifikasi data gempa Gunung Etna menjadi harmoni multi-instrumen (piano, string, gong) dan visual spasial yang selaras dengan aktivitas vulkanik.</p>' +
+      '</figcaption>' +
+      '</figure>' +
+      '<figure class="ed-work">' +
+      '<div class="ed-work__img"><img src="assets/figures/quantum_batik.jpg" alt="Quantum Batik Prof. Sholihun"></div>' +
+      '<figcaption>' +
+      '<div class="ed-label">Fisika &middot; Quantum Batik</div>' +
+      '<h4 class="ed-h4">Prof. Sholihun, S.Si., Ph.D.Sc.</h4>' +
+      '<p class="ed-p ed-p--sm">Simulasi kerapatan elektron dan fisika komputasi material kuantum yang berpadu dengan keanggunan motif batik tradisional Nusantara.</p>' +
+      '</figcaption>' +
+      '</figure>' +
+      '<figure class="ed-work">' +
+      '<div class="ed-work__img"><img src="assets/figures/kami_hadir.jpg" alt="Kami Hadir Prof. Indah Emilia"></div>' +
+      '<figcaption>' +
+      '<div class="ed-label">Matematika &middot; Kami Hadir 1 & 2</div>' +
+      '<h4 class="ed-h4">Prof. Dr.rer.nat. Indah Emilia, M.Si.</h4>' +
+      '<p class="ed-p ed-p--sm">Eksplorasi struktur aljabar abstrak murni yang divisualisasikan menjadi lanskap keberadaan manusia di tengah semesta data.</p>' +
+      '</figcaption>' +
+      '</figure>' +
       '</div>' +
       '</div>'
   });

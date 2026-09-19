@@ -80,6 +80,7 @@
     if (layout !== 'content' && layout !== 'dark' && layout !== 'light') {
       cls.push('slide--' + layout);
     }
+    if (s.cls) cls.push(s.cls);
 
     var html = '';
 
@@ -132,6 +133,11 @@
      maupun div pembungkus kolom konten murni tanpa latar belakang. */
   function wadah(el) {
     if (!el) return false;
+    /* Komponen editorial: .ed-group dan tumpukan tata letak dianimasikan per anak,
+       komponen ed-* lainnya masuk sebagai satu kesatuan visual */
+    if (punya(el, 'ed-group') || punya(el, 'ed-stack') || punya(el, 'ed-duo') ||
+        punya(el, 'ed-tour') || punya(el, 'ed-budget') || punya(el, 'ed-mapwrap')) return true;
+    if (/(^|\s)ed-/.test(el.getAttribute('class') || '')) return false;
     /* Jika elemen adalah kartu atau poin visual, elemen itu sendiri yang dianimasikan */
     if (punya(el, 'card') || punya(el, 'bar-point')) return false;
 
@@ -201,7 +207,7 @@
       tandai(slide.querySelector('.closing-content .title-kicker'), 'turun', 60);
       tandai(slide.querySelector('.closing-h2'), 'naik', 140);
       tandai(slide.querySelector('.closing-sub'), 'naik', 240);
-      tandai(slide.querySelector('.closing-content .card'), 'tumbuh', 340);
+      tandai(slide.querySelector('.closing-content .ed-contact'), 'naik', 340);
       tandai(slide.querySelector('.closing-content > p:last-child'), 'naik', 440);
       return;
     }
@@ -235,7 +241,7 @@
       if (punya(el, 'tbl') || el.tagName === 'TABLE') { tabel(el, jeda); continue; }
 
       /* Arah masuk khusus untuk elemen karakteristik Data Art */
-      if (punya(el, 'bar-point')) {
+      if (punya(el, 'bar-point') || punya(el, 'ed-point') || punya(el, 'ed-li')) {
         tandai(el, 'kanan', jeda());
       } else if (punya(el, 'art-figure')) {
         tandai(el, 'tumbuh', jeda());

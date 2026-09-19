@@ -8,6 +8,7 @@
 (function () {
   'use strict';
   var D = (window.DECK = window.DECK || []);
+  var V = window.VIZ;
 
   /* ---------------------------------------------------------------- Slide 1 */
   D.push({
@@ -39,6 +40,7 @@
     id: 's-02',
     chapter: 0,
     dark: false,
+    cls: 'ed-split',
     num: 2,
     kicker: 'REFLEKSI & TITIK TEMU',
     title: 'Ketika Sains Melangkah Keluar dari Dinding Laboratorium',
@@ -48,26 +50,15 @@
       'Sains yang sustainable bukan hanya sains yang selesai di lembar jurnal, melainkan sains yang mampu menyentuh kesadaran publik. ' +
       'Itulah alasan mengapa gerakan Data Art ini lahir: menjembatani kecerdasan logika MIPA dengan rasa seni kebudayaan kita.',
     html:
-      '<div class="s-body" style="display:grid;grid-template-columns:1.05fr 0.95fr;gap:36px;align-items:center;">' +
-      '<div>' +
-      '<div class="bar-point">' +
-      '<div class="bar-point__title">Sains yang Menghidupkan (Sustainable Life)</div>' +
-      '<p class="bar-point__desc">Riset di MIPA tidak hanya memecahkan angka di atas kertas; sains kita menjaga denyut kehidupan &mdash; kesehatan manusia, kelestarian iklim, pemantauan bumi, hingga kecerdasan buatan.</p>' +
-      '</div>' +
-      '<div class="bar-point">' +
-      '<div class="bar-point__title">Tantangan Keterhubungan Publik</div>' +
-      '<p class="bar-point__desc">Sering kali hasil riset terbaik terkurung dalam bahasa rumus yang berjarak dari masyarakat luas yang sesungguhnya paling membutuhkan pemahaman atas sains tersebut.</p>' +
-      '</div>' +
-      '<div class="bar-point">' +
-      '<div class="bar-point__title">Data Art sebagai Jembatan Rasa</div>' +
-      '<p class="bar-point__desc">Seni data menerjemahkan matriks angka laboratorium menjadi pengalaman visual dan emosional yang menggugah nurani, menjadikan sains milik bersama.</p>' +
-      '</div>' +
-      '</div>' +
-      '<div>' +
-      '<div class="art-figure" style="height:360px;background:#EAE8E1;border-radius:3px;">' +
+      '<figure class="ed-bleed" data-anim="pudar">' +
       '<img src="assets/figures/jogja_gallery_opening.jpg" alt="Suasana Pameran Data Art di Jogja Gallery">' +
-      '</div>' +
-      '<p style="font-size:13.5px;font-style:italic;color:var(--text-light-muted);margin:8px 0 0;">Pembukaan Data Art 2025 di Jogja Gallery &mdash; ruang temu sains kampus dengan ribuan masyarakat luas.</p>' +
+      '<figcaption class="ed-bleed__cap">Pembukaan Data Art 2025 di Jogja Gallery &mdash; ruang temu sains kampus dengan ribuan masyarakat luas.</figcaption>' +
+      '</figure>' +
+      '<div class="s-body ed-center">' +
+      '<div class="ed-points ed-group">' +
+      V.point('01', 'Sains yang Menghidupkan (Sustainable Life)', 'Riset di MIPA tidak hanya memecahkan angka di atas kertas; sains kita menjaga denyut kehidupan &mdash; kesehatan manusia, kelestarian iklim, pemantauan bumi, hingga kecerdasan buatan.') +
+      V.point('02', 'Tantangan Keterhubungan Publik', 'Sering kali hasil riset terbaik terkurung dalam bahasa rumus yang berjarak dari masyarakat luas yang sesungguhnya paling membutuhkan pemahaman atas sains tersebut.') +
+      V.point('03', 'Data Art sebagai Jembatan Rasa', 'Seni data menerjemahkan matriks angka laboratorium menjadi pengalaman visual dan emosional yang menggugah nurani, menjadikan sains milik bersama.') +
       '</div>' +
       '</div>'
   });

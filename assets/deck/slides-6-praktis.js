@@ -6,6 +6,7 @@
 (function () {
   'use strict';
   var D = (window.DECK = window.DECK || []);
+  var V = window.VIZ;
 
   /* ---------------------------------------------------------------- Slide 15 */
   D.push({
@@ -23,38 +24,41 @@
       'Ketiga, Long-Term Impact: memperkuat ekosistem sains dan data nasional yang menghasilkan talenta-talenta siap pakai. ' +
       'Dan keempat, Educational Care: wujud CSR berdampak nyata yang langsung menyentuh ribuan pelajar generasi penerus bangsa.',
     html:
-      '<div class="s-body" style="display:flex;flex-direction:column;gap:18px;">' +
-      '<div class="grid4" style="gap:16px;">' +
-      '<div class="card" style="padding:22px 18px;border-top:4px solid var(--accent-amber-light);">' +
-      '<div style="font-size:11px;font-weight:bold;color:var(--accent-amber-light);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;">Pilar 1</div>' +
-      '<h3 style="font-family:var(--font-serif);font-size:20px;margin:0 0 8px;color:var(--text-light-h);">Wide Exposure</h3>' +
-      '<p style="font-size:13px;line-height:1.5;color:var(--text-light-body);margin:0;">Eksposur luas di 3 kota besar, ribuan pengunjung dari kalangan akademisi, profesional, budayawan, kurator, dan liputan pers nasional berkelanjutan.</p>' +
+      '<div class="s-body ed-stack">' +
+      '<div class="ed-values ed-group">' +
+      '<div class="ed-value">' +
+      '<div class="ed-value__icon">' + V.icon('exposure') + '</div>' +
+      '<div class="ed-label">Pilar 1</div>' +
+      '<h3 class="ed-h3 ed-h3--sm">Wide Exposure</h3>' +
+      '<p class="ed-p ed-p--xs">Eksposur luas di 3 kota besar, ribuan pengunjung dari kalangan akademisi, profesional, budayawan, kurator, dan liputan pers nasional berkelanjutan.</p>' +
       '</div>' +
-      '<div class="card" style="padding:22px 18px;border-top:4px solid var(--accent-teal);">' +
-      '<div style="font-size:11px;font-weight:bold;color:var(--accent-teal);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;">Pilar 2</div>' +
-      '<h3 style="font-family:var(--font-serif);font-size:20px;margin:0 0 8px;color:var(--text-light-h);">Brand Equity</h3>' +
-      '<p style="font-size:13px;line-height:1.5;color:var(--text-light-body);margin:0;">Menjadi pionir dengan memperkuat reputasi perusahaan yang visioner, mendukung inovasi teknologi tinggi sekaligus pelestarian kebudayaan luhur.</p>' +
+      '<div class="ed-value ed-value--alt">' +
+      '<div class="ed-value__icon">' + V.icon('equity') + '</div>' +
+      '<div class="ed-label ed-label--alt">Pilar 2</div>' +
+      '<h3 class="ed-h3 ed-h3--sm">Brand Equity</h3>' +
+      '<p class="ed-p ed-p--xs">Menjadi pionir dengan memperkuat reputasi perusahaan yang visioner, mendukung inovasi teknologi tinggi sekaligus pelestarian kebudayaan luhur.</p>' +
       '</div>' +
-      '<div class="card" style="padding:22px 18px;border-top:4px solid var(--accent-amber-light);">' +
-      '<div style="font-size:11px;font-weight:bold;color:var(--accent-amber-light);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;">Pilar 3</div>' +
-      '<h3 style="font-family:var(--font-serif);font-size:20px;margin:0 0 8px;color:var(--text-light-h);">Long-Term Impact</h3>' +
-      '<p style="font-size:13px;line-height:1.5;color:var(--text-light-body);margin:0;">Membangun ekosistem teknologi nasional yang sehat, memperluas penyerapan talenta data, dan mempercepat kemandirian inovasi bangsa.</p>' +
+      '<div class="ed-value">' +
+      '<div class="ed-value__icon">' + V.icon('impact') + '</div>' +
+      '<div class="ed-label">Pilar 3</div>' +
+      '<h3 class="ed-h3 ed-h3--sm">Long-Term Impact</h3>' +
+      '<p class="ed-p ed-p--xs">Membangun ekosistem teknologi nasional yang sehat, memperluas penyerapan talenta data, dan mempercepat kemandirian inovasi bangsa.</p>' +
       '</div>' +
-      '<div class="card" style="padding:22px 18px;border-top:4px solid var(--accent-teal);">' +
-      '<div style="font-size:11px;font-weight:bold;color:var(--accent-teal);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;">Pilar 4</div>' +
-      '<h3 style="font-family:var(--font-serif);font-size:20px;margin:0 0 8px;color:var(--text-light-h);">Educational Care</h3>' +
-      '<p style="font-size:13px;line-height:1.5;color:var(--text-light-body);margin:0;">Kontribusi nyata CSR bagi pemajuan pendidikan anak bangsa, menumbuhkan kesadaran sains, data, dan AI di kalangan generasi muda Indonesia.</p>' +
+      '<div class="ed-value ed-value--alt">' +
+      '<div class="ed-value__icon">' + V.icon('education') + '</div>' +
+      '<div class="ed-label ed-label--alt">Pilar 4</div>' +
+      '<h3 class="ed-h3 ed-h3--sm">Educational Care</h3>' +
+      '<p class="ed-p ed-p--xs">Kontribusi nyata CSR bagi pemajuan pendidikan anak bangsa, menumbuhkan kesadaran sains, data, dan AI di kalangan generasi muda Indonesia.</p>' +
       '</div>' +
       '</div>' +
-      '<div style="background:var(--bg-light-card);padding:14px 20px;border-radius:4px;border:1px solid var(--bg-light-border);text-align:center;">' +
-      '<span style="font-size:14px;color:var(--text-light-h);"><b>Kemitraan yang Saling Menguatkan:</b> Bukan sekadar penempatan logo, melainkan integrasi narasi inovasi perusahaan Anda ke dalam perhelatan bersejarah.</span>' +
-      '</div>' +
+      '<p class="ed-statement ed-statement--quiet"><b>Kemitraan yang Saling Menguatkan:</b> Bukan sekadar penempatan logo, melainkan integrasi narasi inovasi perusahaan Anda ke dalam perhelatan bersejarah.</p>' +
       '</div>'
   });
 
   /* ---------------------------------------------------------------- Slide 16 */
   D.push({
     id: 's-16',
+    cls: 'ed-split',
     chapter: 6,
     dark: false,
     num: 16,
@@ -65,29 +69,19 @@
       'Jika bukan kita yang menyokong karya dosen dan adik-adik mahasiswa kita sendiri, siapa lagi? ' +
       'Ini saatnya kita bergotong-royong membuktikan bahwa lulusan FMIPA UGM tidak hanya jago berhitung, tetapi mampu menggerakkan ekosistem kebudayaan dan peradaban Indonesia ke level tertinggi.',
     html:
-      '<div class="s-body" style="display:grid;grid-template-columns:1.1fr 0.9fr;gap:32px;align-items:center;">' +
-      '<div>' +
-      '<div class="bar-point">' +
-      '<div class="bar-point__title">Jejaring Kepemimpinan yang Solid</div>' +
-      '<p class="bar-point__desc">Alumni MIPA tersebar di posisi-posisi pengambil keputusan strategis di seluruh sektor industri tanah air &mdash; potensi sinergi yang luar biasa besar.</p>' +
+      '<aside class="ed-bleed ed-bleed--ink" data-anim="pudar">' +
+      V.network(500, 720, 71) +
+      '<div class="ed-bleed__quote ed-bleed__quote--ink">' +
+      '<div class="ed-label">Semangat Guyub UGM</div>' +
+      '<blockquote class="ed-quote ed-quote--light ed-quote--lg">&ldquo;Kekuatan terbesar FMIPA UGM bukan hanya seberapa presisi rumus yang kita teliti, melainkan seberapa kokoh kita bergandengan tangan untuk memberi arti bagi negeri.&rdquo;</blockquote>' +
+      '<div class="ed-bleed__src">Krisostomus Nova Rahmanto &middot; Malam Kangen 2026</div>' +
       '</div>' +
-      '<div class="bar-point">' +
-      '<div class="bar-point__title">Panggung Kebanggaan Almamater</div>' +
-      '<p class="bar-point__desc">Perhelatan Data Art 2026 adalah panggung bergengsi untuk menunjukkan marwah keunggulan riset MIPA UGM di hadapan publik nusantara.</p>' +
-      '</div>' +
-      '<div class="bar-point">' +
-      '<div class="bar-point__title">Investasi Nyata bagi Adik-Adik Mahasiswa</div>' +
-      '<p class="bar-point__desc">Dukungan Anda membuka jalan bagi mahasiswa dan periset muda kampus untuk berani bermimpi, berkarya, dan diakui karyanya di tingkat dunia.</p>' +
-      '</div>' +
-      '</div>' +
-      '<div class="card" style="padding:28px 24px;background:var(--bg-light-card);border:2px solid var(--accent-amber-light);border-radius:4px;display:flex;flex-direction:column;justify-content:center;text-align:center;">' +
-      '<div style="font-size:12px;font-weight:bold;color:var(--accent-amber-light);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;">Semangat Guyub UGM</div>' +
-      '<blockquote style="margin:0 0 16px;font-family:var(--font-serif);font-size:20px;line-height:1.45;color:var(--text-light-h);font-style:italic;">' +
-      '&ldquo;Kekuatan terbesar FMIPA UGM bukan hanya seberapa presisi rumus yang kita teliti, melainkan seberapa kokoh kita bergandengan tangan untuk memberi arti bagi negeri.&rdquo;' +
-      '</blockquote>' +
-      '<div style="font-size:13px;color:var(--text-light-muted);font-weight:bold;">' +
-      'Krisostomus Nova Rahmanto &middot; Malam Kangen 2026' +
-      '</div>' +
+      '</aside>' +
+      '<div class="s-body ed-center">' +
+      '<div class="ed-points ed-group">' +
+      V.point('01', 'Jejaring Kepemimpinan yang Solid', 'Alumni MIPA tersebar di posisi-posisi pengambil keputusan strategis di seluruh sektor industri tanah air &mdash; potensi sinergi yang luar biasa besar.') +
+      V.point('02', 'Panggung Kebanggaan Almamater', 'Perhelatan Data Art 2026 adalah panggung bergengsi untuk menunjukkan marwah keunggulan riset MIPA UGM di hadapan publik nusantara.') +
+      V.point('03', 'Investasi Nyata bagi Adik-Adik Mahasiswa', 'Dukungan Anda membuka jalan bagi mahasiswa dan periset muda kampus untuk berani bermimpi, berkarya, dan diakui karyanya di tingkat dunia.') +
       '</div>' +
       '</div>'
   });

@@ -1,0 +1,434 @@
+/* ===========================================================================
+   Refresh visual Data Art 2026
+   Mengikuti desain PPTX sumber Workshop_DataArt2026_Kerja_Saintis_Kerja_Seni:
+   Calibri + Cambria, hitam kuratorial, krem kertas, amber, dan teal.
+   Perubahan ini hanya mengolah komposisi visual. Konten dan widget tetap utuh.
+   =========================================================================== */
+
+:root {
+  --ppt-black: #0C0B10;
+  --ppt-ink: #14141A;
+  --ppt-surface: #181720;
+  --ppt-paper: #F2F0EA;
+  --ppt-paper-soft: #F8F7F4;
+  --ppt-amber: #E0A537;
+  --ppt-ochre: #B4791A;
+  --ppt-teal: #1A6B65;
+  --ppt-teal-light: #45AEA4;
+  --ppt-line: #E5E1D8;
+  --ppt-dark-line: rgba(255, 255, 255, 0.10);
+  --font-serif: Cambria, "Lora", "Newsreader", Georgia, serif;
+  --font-sans: Calibri, "Plus Jakarta Sans", "Inter", "Segoe UI", sans-serif;
+}
+
+body {
+  background: #060508;
+  font-family: var(--font-sans);
+}
+
+.slide {
+  background:
+    radial-gradient(circle at 92% 8%, rgba(180, 121, 26, 0.055), transparent 27%),
+    #FFFFFF;
+  color: var(--text-light-body);
+  padding: 56px 60px 48px;
+}
+
+.slide--dark {
+  background:
+    radial-gradient(circle at 88% 16%, rgba(69, 174, 164, 0.11), transparent 26%),
+    radial-gradient(circle at 12% 100%, rgba(224, 165, 55, 0.08), transparent 33%),
+    var(--ppt-black);
+}
+
+.slide::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, transparent 0 89%, rgba(180, 121, 26, 0.09) 89% 89.18%, transparent 89.18%);
+  opacity: 0.7;
+}
+
+.slide--dark::before {
+  background:
+    linear-gradient(90deg, transparent 0 89%, rgba(224, 165, 55, 0.20) 89% 89.18%, transparent 89.18%);
+}
+
+.slide > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Header mengikuti hierarki asli PPT namun memberi rule yang lebih tenang. */
+.s-kicker {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-sans);
+  font-size: 12.5px;
+  letter-spacing: 0.15em;
+  margin-bottom: 11px;
+}
+
+.s-kicker::before {
+  content: "";
+  width: 28px;
+  height: 2px;
+  flex: 0 0 auto;
+  background: var(--accent-amber-light);
+}
+
+.slide--dark .s-kicker::before {
+  background: var(--accent-amber-dark);
+}
+
+.s-h2 {
+  font-family: var(--font-serif);
+  font-size: 40px;
+  line-height: 1.13;
+  letter-spacing: -0.02em;
+  max-width: 1060px;
+}
+
+.s-body {
+  margin-top: 24px;
+}
+
+.slide-num {
+  right: 48px;
+  bottom: 24px;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+}
+
+.footnote {
+  left: 60px;
+  bottom: 24px;
+  font-size: 12px;
+  max-width: 920px;
+}
+
+/* Mengurangi kesan dashboard: panel datar, rule tipis, dan ruang antar elemen. */
+.card,
+.mitos-card,
+.uji-col,
+.pillar-card,
+.stepper-item,
+.theme-card,
+.sponsor-tier-card {
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+.slide--light .card,
+.slide--light .mitos-card,
+.slide--light .uji-col,
+.slide--light .pillar-card,
+.slide--light .stepper-item,
+.slide--light .theme-card {
+  background: rgba(242, 240, 234, 0.46) !important;
+  border-color: var(--ppt-line) !important;
+}
+
+.slide--dark .card,
+.slide--dark .mitos-card,
+.slide--dark .uji-col,
+.slide--dark .pillar-card,
+.slide--dark .stepper-item,
+.slide--dark .theme-card {
+  background: rgba(24, 23, 32, 0.66) !important;
+  border-color: var(--ppt-dark-line) !important;
+}
+
+.bar-point {
+  border-left-width: 3px;
+  padding-left: 18px;
+  margin-bottom: 20px;
+}
+
+.bar-point__title {
+  font-family: var(--font-sans);
+  font-size: 18px;
+}
+
+.card__title,
+.method-row__title,
+.stepper-step,
+.tier-badge {
+  letter-spacing: 0.11em;
+}
+
+.btn,
+.nav,
+.menu__panel,
+.help__panel,
+.ov__cell {
+  border-radius: 2px !important;
+}
+
+/* Sampul dan penutup mempertahankan bahasa gelap editorial dari deck sumber. */
+.slide--title {
+  background:
+    linear-gradient(90deg, var(--ppt-black) 0%, var(--ppt-black) 38%, rgba(12, 11, 16, 0.46) 65%, rgba(12, 11, 16, 0.12) 100%),
+    #0C0B10;
+  padding: 80px 70px;
+}
+
+.slide--title .title-art {
+  width: 60%;
+  background-size: cover;
+  background-position: center right;
+  opacity: 0.76;
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 22%, black 100%);
+  mask-image: linear-gradient(to right, transparent 0%, black 22%, black 100%);
+}
+
+.slide--title .title-h1 {
+  font-family: var(--font-serif);
+  font-size: 66px;
+  letter-spacing: -0.03em;
+  line-height: 1.08;
+}
+
+.slide--title .title-kicker,
+.slide--closing .title-kicker {
+  font-size: 12.5px;
+  letter-spacing: 0.18em;
+}
+
+.slide--closing {
+  background:
+    linear-gradient(90deg, var(--ppt-black) 0%, rgba(12, 11, 16, 0.9) 48%, rgba(12, 11, 16, 0.26) 100%),
+    var(--ppt-black);
+}
+
+.slide--closing .closing-art {
+  width: 60%;
+  opacity: 0.34;
+  -webkit-mask-image: linear-gradient(to right, transparent, black 34%);
+  mask-image: linear-gradient(to right, transparent, black 34%);
+}
+
+.slide--closing .closing-h2 {
+  font-family: var(--font-serif);
+  font-size: 55px;
+  letter-spacing: -0.03em;
+}
+
+/* Visual tambahan memakai figur lokal dari paket presentasi, tanpa mengubah
+   informasi slide. Posisi dibuat sebagai lapisan sekunder, bukan kartu baru. */
+#s-03 .slide::after,
+#s-08 .slide::after,
+#s-09 .slide::after,
+#s-15 .slide::after,
+#s-16 .slide::after {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  pointer-events: none;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+#s-03 .slide::after {
+  right: 56px;
+  bottom: 78px;
+  width: 294px;
+  height: 238px;
+  background-image:
+    linear-gradient(135deg, rgba(242, 240, 234, 0.22), rgba(180, 121, 26, 0.50)),
+    url("../figures/pamor_keris.jpg");
+  opacity: 0.22;
+  mix-blend-mode: multiply;
+}
+
+#s-08 .slide::after {
+  right: 58px;
+  top: 198px;
+  width: 300px;
+  height: 266px;
+  background-image:
+    linear-gradient(135deg, rgba(242, 240, 234, 0.2), rgba(26, 107, 101, 0.56)),
+    url("../figures/pandangan_mesin.jpg");
+  opacity: 0.19;
+  mix-blend-mode: multiply;
+}
+
+#s-09 .slide::after {
+  right: 58px;
+  bottom: 72px;
+  width: 360px;
+  height: 214px;
+  background-image:
+    linear-gradient(90deg, rgba(12, 11, 16, 0.94), rgba(12, 11, 16, 0.26)),
+    url("../figures/cosmic_spotify.jpg");
+  opacity: 0.38;
+}
+
+#s-15 .slide::after {
+  right: 54px;
+  bottom: 72px;
+  width: 236px;
+  height: 216px;
+  background-image:
+    linear-gradient(135deg, rgba(242, 240, 234, 0.16), rgba(180, 121, 26, 0.60)),
+    url("../figures/batik_fibonacci.jpg");
+  opacity: 0.18;
+  mix-blend-mode: multiply;
+}
+
+#s-16 .slide::after {
+  right: 54px;
+  top: 194px;
+  width: 330px;
+  height: 278px;
+  background-image:
+    linear-gradient(135deg, rgba(242, 240, 234, 0.18), rgba(26, 107, 101, 0.62)),
+    url("../figures/venue_gik_ugm.jpg");
+  opacity: 0.18;
+  mix-blend-mode: multiply;
+}
+
+/* Tiga kota menjadi itinerary visual, bukan deretan kotak setara. */
+#s-11 .s-body > .grid3 > .card {
+  min-height: 238px;
+  padding-top: 108px !important;
+  background-repeat: no-repeat !important;
+  background-position: left top !important;
+  background-size: 100% 84px !important;
+  border-top: 0 !important;
+}
+
+#s-11 .s-body > .grid3 > .card:nth-child(1) {
+  background-image:
+    linear-gradient(180deg, rgba(12, 11, 16, 0.12), rgba(242, 240, 234, 0.97) 82%),
+    url("../figures/city_jogja.jpg") !important;
+}
+
+#s-11 .s-body > .grid3 > .card:nth-child(2) {
+  background-image:
+    linear-gradient(180deg, rgba(26, 107, 101, 0.16), rgba(242, 240, 234, 0.97) 82%),
+    url("../figures/city_lampung.jpg") !important;
+}
+
+#s-11 .s-body > .grid3 > .card:nth-child(3) {
+  background-image:
+    linear-gradient(180deg, rgba(180, 121, 26, 0.16), rgba(242, 240, 234, 0.97) 82%),
+    url("../figures/city_bali.jpg") !important;
+}
+
+/* Tiga pilar program mendapatkan aksen karya, bukan ikon atau kartu baru. */
+#s-12 .s-body > .grid3 > .card {
+  min-height: 258px;
+  padding-top: 102px !important;
+  background-repeat: no-repeat !important;
+  background-position: left top !important;
+  background-size: 100% 78px !important;
+  border-left: 0 !important;
+}
+
+#s-12 .s-body > .grid3 > .card:nth-child(1) {
+  background-image:
+    linear-gradient(180deg, rgba(12, 11, 16, 0.10), rgba(242, 240, 234, 0.97) 86%),
+    url("../figures/karya_geofisika_cincin.jpg") !important;
+}
+
+#s-12 .s-body > .grid3 > .card:nth-child(2) {
+  background-image:
+    linear-gradient(180deg, rgba(26, 107, 101, 0.13), rgba(242, 240, 234, 0.97) 86%),
+    url("../figures/karya_statistika_lintasan.jpg") !important;
+}
+
+#s-12 .s-body > .grid3 > .card:nth-child(3) {
+  background-image:
+    linear-gradient(180deg, rgba(180, 121, 26, 0.14), rgba(242, 240, 234, 0.97) 86%),
+    url("../figures/karya_ilkom_keraguan.jpg") !important;
+}
+
+/* Total anggaran memiliki bobot visual yang berbeda dari lima alokasi. */
+#s-13 .s-body > div > .card:last-child {
+  position: relative;
+  overflow: hidden;
+  background:
+    linear-gradient(135deg, rgba(20, 20, 26, 0.96), rgba(24, 23, 32, 0.78)),
+    url("../figures/leuwigajah_generatif.jpg") center / cover no-repeat !important;
+  border: 1px solid rgba(224, 165, 55, 0.46) !important;
+}
+
+#s-13 .s-body > div > .card:last-child::after {
+  content: "";
+  position: absolute;
+  right: -30px;
+  bottom: -34px;
+  width: 210px;
+  height: 210px;
+  border: 1px solid rgba(224, 165, 55, 0.48);
+  border-radius: 50%;
+}
+
+#s-13 .s-body > div > .card:last-child > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Dua widget dipertahankan sebagai area interaktif yang memang perlu
+   pembanding, tetapi dibersihkan dari sudut/panel gaya dashboard. */
+.widget-host .card,
+.widget-host .art-figure,
+.interactive-controls .btn {
+  border-radius: 2px !important;
+}
+
+.widget-host .card {
+  background: rgba(20, 20, 26, 0.76) !important;
+  border-color: var(--ppt-dark-line) !important;
+}
+
+.widget-host .art-figure {
+  border-color: var(--ppt-dark-line) !important;
+}
+
+#s-14 .interactive-controls {
+  justify-content: flex-start !important;
+  gap: 8px !important;
+  overflow: hidden;
+}
+
+#s-14 .interactive-controls .btn {
+  padding: 8px 16px !important;
+  font-size: 12px !important;
+  letter-spacing: 0.03em;
+}
+
+#s-14 .widget-host > .card {
+  border-left: 3px solid var(--accent-amber-dark) !important;
+  background:
+    linear-gradient(135deg, rgba(20, 20, 26, 0.92), rgba(12, 11, 16, 0.74)),
+    url("../figures/quantum_batik.jpg") center / cover no-repeat !important;
+}
+
+/* Chrome presenter dipertahankan dalam palet sumber. */
+.nav {
+  background: rgba(18, 17, 24, 0.92);
+}
+
+.nav button:hover,
+.nav button:focus-visible {
+  color: var(--accent-amber-dark);
+  background: rgba(224, 165, 55, 0.12);
+}
+
+.progress {
+  background: var(--accent-amber-dark);
+}
+
+@media print {
+  .slide::before,
+  .slide::after {
+    opacity: 1 !important;
+  }
+}
