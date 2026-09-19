@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Data Art 2026: Extending Life — Insight Session Malam Kangen FMIPA UGM ke-71</title>
+<meta name="description" content="Presentasi Insight Session: Sustainable Life oleh Krisostomus Nova Rahmanto, S.Kom., M.Sc. pada Malam Kangen Dies Natalis FMIPA UGM ke-71. Penggalangan dana kemitraan sponsorship dan tur pameran Data Art 2026 di 3 kota (Yogyakarta, Denpasar, Bandar Lampung).">
+
+<!-- Desain Asli Presentasi PPTX / PDF (Krisostomus Nova Rahmanto) -->
+<link rel="stylesheet" href="assets/deck/deck.css">
+<link rel="stylesheet" href="assets/deck/chrome.css">
+<link rel="stylesheet" href="assets/deck/motion.css">
+</head>
+<body>
+
+<div class="deck" id="deck">
+  <!-- Slide dinamis disuntikkan ke sini oleh assets/deck/deck.js -->
+  <div class="stage" id="stage"></div>
+</div>
+
+<div class="progress" id="progress"></div>
+
+<nav class="nav" id="nav" aria-label="Navigasi slide">
+  <button id="navPrev" type="button" title="Slide sebelumnya (←)">Sebelumnya</button>
+  <span class="nav__count" id="navCount">1 / 17</span>
+  <button id="navNext" type="button" title="Slide berikutnya (→)">Berikutnya</button>
+  <span class="nav__sep"></span>
+  <button id="navMenu" type="button" title="Menu bab (M)">Bab</button>
+  <button id="navOv" type="button" title="Semua slide (O)">Semua Slide</button>
+  <button id="navNotes" type="button" title="Catatan presenter (N)">Catatan</button>
+  <button id="navFull" type="button" title="Layar penuh (F)">Layar Penuh</button>
+  <button id="navHelp" type="button" title="Pintasan keyboard (?)">?</button>
+</nav>
+
+<!-- Overview Grid Modal (O) -->
+<div class="ov" id="ov" role="dialog" aria-modal="true" aria-label="Semua slide">
+  <div class="ov__head">
+    <div>
+      <h2>Semua Slide — Data Art 2026: Extending Life</h2>
+      <p>Klik thumbnail untuk langsung menuju ke slide &middot; Tekan <kbd>Esc</kbd> untuk menutup</p>
+    </div>
+  </div>
+  <div class="ov__grid" id="ovGrid"></div>
+</div>
+
+<!-- Menu Bab Modal (M) -->
+<div class="menu" id="menu" role="dialog" aria-modal="true" aria-label="Menu bab">
+  <div class="menu__panel">
+    <h2>Lompat ke Bab Materi</h2>
+    <p>Pilih bab atau tekan pintasan <kbd>M</kbd></p>
+    <div class="menu__list" id="menuList"></div>
+  </div>
+</div>
+
+<!-- Catatan Presenter Drawer (N) -->
+<div class="notes" id="notes" aria-live="polite">
+  <p class="notes__k">Catatan Presenter (Klik N untuk sembunyikan / tampilkan)</p>
+  <p class="notes__body" id="notesBody"></p>
+</div>
+
+<!-- Timer Sesi Workshop (T) -->
+<div class="timer" id="timer" aria-label="Timer sesi workshop">
+  <div class="timer__clock" id="timerClock">00:00</div>
+  <div class="timer__block" id="timerBlock">Menit 0 &middot; Memulai materi</div>
+  <div class="timer__ctl">
+    <button id="timerToggle" type="button">Jalan / Jeda</button>
+    <button id="timerReset" type="button">Reset</button>
+  </div>
+</div>
+
+<!-- Modal Bantuan Pintasan Keyboard (?) -->
+<div class="help" id="help" role="dialog" aria-modal="true" aria-label="Pintasan keyboard">
+  <div class="help__panel">
+    <h2>Pintasan Keyboard</h2>
+    <p>Tekan <kbd>Esc</kbd> atau klik di luar untuk menutup</p>
+    <div class="help__grid">
+      <div class="help__row"><kbd>&rarr;</kbd><span>Slide berikutnya</span></div>
+      <div class="help__row"><kbd>&larr;</kbd><span>Slide sebelumnya</span></div>
+      <div class="help__row"><kbd>Space</kbd><span>Slide berikutnya</span></div>
+      <div class="help__row"><kbd>Home</kbd><span>Slide pertama</span></div>
+      <div class="help__row"><kbd>End</kbd><span>Slide terakhir</span></div>
+      <div class="help__row"><kbd>M</kbd><span>Menu bab</span></div>
+      <div class="help__row"><kbd>O</kbd><span>Overview thumbnail</span></div>
+      <div class="help__row"><kbd>N</kbd><span>Catatan presenter</span></div>
+      <div class="help__row"><kbd>T</kbd><span>Timer sesi workshop</span></div>
+      <div class="help__row"><kbd>F</kbd><span>Layar penuh (Fullscreen)</span></div>
+      <div class="help__row"><kbd>?</kbd><span>Bantuan pintasan ini</span></div>
+      <div class="help__row"><kbd>Esc</kbd><span>Tutup jendela modal</span></div>
+    </div>
+    <p style="margin:20px 0 0;font-size:13px;color:var(--text-muted);border-top:1px solid var(--border-subtle);padding-top:12px;">
+      <b>Klik mouse:</b> Sepertiga kiri layar untuk mundur, dua pertiga kanan layar untuk maju.<br>
+      <b>Cetak PDF:</b> Tekan <kbd>Ctrl</kbd>+<kbd>P</kbd> untuk mencetak atau mengekspor deck persis 1 slide per halaman (A4 Landscape).
+    </p>
+  </div>
+</div>
+
+<!-- Skrip Slide Modular (Urutan menentukan susunan deck) -->
+<script src="assets/deck/slides-0-pembuka.js"></script>
+<script src="assets/deck/slides-1-mitos.js"></script>
+<script src="assets/deck/slides-2-metode.js"></script>
+<script src="assets/deck/slides-3-evaluasi.js"></script>
+<script src="assets/deck/slides-4-tema2026.js"></script>
+<script src="assets/deck/slides-5-kemitraan.js"></script>
+<script src="assets/deck/slides-6-praktis.js"></script>
+<script src="assets/deck/slides-7-penutup.js"></script>
+
+<!-- Widget Interaktif & Engine Presentasi -->
+<script src="assets/deck/widgets.js"></script>
+<script src="assets/deck/deck.js"></script>
+
+</body>
+</html>

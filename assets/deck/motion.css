@@ -1,0 +1,74 @@
+/* ===========================================================================
+   Lapisan Gerak (Motion Layer) Presentasi Data Art 2026.
+   Karakter: Simpel, Modern, Elegan, Bermartabat, Bernuansa Korporat.
+   Satu kurva easing expo-out, tanpa efek kartunis / bouncing / pantulan.
+   Seluruh gerak adalah transisi CSS yang dilepas oleh kelas .anim-nyala
+   pada slide aktif.
+   =========================================================================== */
+
+:root {
+  --anim-dur: 440ms;                     /* durasi masuk satu elemen */
+  --anim-draw: 950ms;                    /* garis SVG menggambar dirinya */
+  --anim-ease: cubic-bezier(0.16, 1, 0.3, 1); /* expo-out: tiba cepat lalu mengendap tenang */
+}
+
+/* --- Kosakata Arah Masuk ------------------------------------------------
+   Jarak tempuh mikro (12-18px) sehingga elemen terbaca "mendarat" presisi. */
+
+[data-anim] {
+  transition: opacity var(--anim-dur) var(--anim-ease),
+              transform var(--anim-dur) var(--anim-ease);
+  will-change: opacity, transform;
+}
+
+[data-anim="naik"]   { opacity: 0; transform: translateY(16px); }
+[data-anim="turun"]  { opacity: 0; transform: translateY(-12px); }
+[data-anim="kanan"]  { opacity: 0; transform: translateX(-18px); }
+[data-anim="kiri"]   { opacity: 0; transform: translateX(18px); }
+[data-anim="pudar"]  { opacity: 0; }
+[data-anim="tumbuh"] { opacity: 0; transform: scale(0.97); }
+
+/* Sapuan skala untuk elemen geometris brand UGM (rule 82x3, band, separator) */
+[data-anim="lebar"]  { transform: scaleX(0); transform-origin: left center; }
+[data-anim="tinggi"] { transform: scaleY(0); transform-origin: bottom center; }
+
+/* Satu selektor melepas animasi ketika slide aktif */
+.anim-nyala [data-anim] {
+  opacity: 1;
+  transform: none;
+}
+
+/* Delay staggered berbasis CSS variable */
+.anim-nyala [data-anim] {
+  transition-delay: var(--tunda, 0ms);
+}
+
+/* --- Garis SVG yang Menggambar Dirinya --------------------------------- */
+
+.garis-gambar {
+  transition: stroke-dashoffset var(--anim-draw) var(--anim-ease);
+}
+
+.anim-nyala .garis-gambar {
+  transition-delay: var(--tunda, 0ms);
+}
+
+svg.s-supergraphic {
+  height: auto;
+}
+
+/* --- Aksesibilitas: Preferensi Gerak Minimal --------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  [data-anim], .garis-gambar {
+    transition: none !important;
+    animation: none !important;
+  }
+  [data-anim] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .garis-gambar {
+    stroke-dashoffset: 0 !important;
+  }
+}
