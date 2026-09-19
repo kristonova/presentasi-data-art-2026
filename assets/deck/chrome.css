@@ -435,6 +435,21 @@ kbd {
 /* --- Pengaturan Cetak PDF 1 Slide Per Halaman (Ctrl+P) ------------------- */
 
 @media print {
+  /* Penekan gerak 3 dari 3: Kertas cetak tidak memiliki slide aktif,
+     sehingga .anim-nyala tidak pernah terpasang. Seluruh elemen ber-data-anim
+     harus dipaksa ke keadaan akhir agar tidak tercetak kosong/hilang. */
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+  [data-anim] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .garis-gambar {
+    stroke-dashoffset: 0 !important;
+  }
+
   body {
     background: #FFFFFF !important;
     overflow: visible !important;

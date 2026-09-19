@@ -588,7 +588,7 @@
     });
 
     var displayCard = el('div', 'card');
-    displayCard.style.cssText = 'flex:1;background:#14141A;border:1px solid rgba(255,255,255,0.08);border-radius:4px;padding:26px 32px;display:flex;flex-direction:column;justify-content:space-between;';
+    displayCard.style.cssText = 'flex:1;background:#14141A;border:1px solid rgba(255,255,255,0.08);border-radius:4px;padding:26px 32px;display:flex;flex-direction:column;justify-content:space-between;transition:opacity 280ms cubic-bezier(0.16,1,0.3,1),transform 280ms cubic-bezier(0.16,1,0.3,1);';
 
     container.appendChild(btnRow);
     container.appendChild(displayCard);
@@ -632,7 +632,13 @@
         btn.style.background = 'var(--amber)';
         btn.style.color = '#0C0B10';
         btn.style.borderColor = 'var(--amber)';
-        renderTier(tiers[i]);
+        displayCard.style.opacity = '0';
+        displayCard.style.transform = 'translateY(6px)';
+        setTimeout(function () {
+          renderTier(tiers[i]);
+          displayCard.style.opacity = '1';
+          displayCard.style.transform = 'none';
+        }, 70);
       });
     });
 
@@ -673,7 +679,7 @@
     });
 
     var viewWrap = el('div', 'art-layout');
-    viewWrap.style.cssText = 'flex:1;min-height:390px;';
+    viewWrap.style.cssText = 'flex:1;min-height:390px;transition:opacity 280ms cubic-bezier(0.16,1,0.3,1),transform 280ms cubic-bezier(0.16,1,0.3,1);';
 
     container.appendChild(btnRow);
     container.appendChild(viewWrap);
@@ -720,7 +726,13 @@
         btn.style.background = 'var(--amber)';
         btn.style.color = '#0C0B10';
         btn.style.borderColor = 'var(--amber)';
-        showItem(prodiData[idx]);
+        viewWrap.style.opacity = '0';
+        viewWrap.style.transform = 'translateY(6px)';
+        setTimeout(function () {
+          showItem(prodiData[idx]);
+          viewWrap.style.opacity = '1';
+          viewWrap.style.transform = 'none';
+        }, 70);
       });
     });
 

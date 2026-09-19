@@ -1,19 +1,30 @@
 /* ===========================================================================
    Lapisan Gerak (Motion Layer) Presentasi Data Art 2026.
-   Karakter: Simpel, Modern, Elegan, Bermartabat, Bernuansa Korporat.
-   Satu kurva easing expo-out, tanpa efek kartunis / bouncing / pantulan.
-   Seluruh gerak adalah transisi CSS yang dilepas oleh kelas .anim-nyala
-   pada slide aktif.
+   Karakter: Elegan, Bermartabat, Tenang, Bernuansa Korporat & Kuratorial.
+
+   Mengadopsi best practice tata gerak panggung UGM:
+   Kesan korporat lahir dari kekangan (discipline & restraint):
+   - Satu kurva easing (expo-out) mengendalikan hampir seluruh transisi
+   - Jarak tempuh mikro (12-20px) sehingga elemen terbaca "mendarat", bukan melompat
+   - Tanpa bouncing, spring, putaran kartunis, atau animasi looping yang melelahkan
+   - Seluruh gerak adalah transisi CSS yang dilepas oleh SATU kelas (.anim-nyala)
+     pada slide aktif.
+
+   Tiga konteks penekan gerak wajib ditangani:
+   1. prefers-reduced-motion (aksesibilitas pengguna sensitif gerak)
+   2. thumbnail overview (.ov__thumb) agar 17 thumbnail tidak kosong/hilang
+   3. cetak / ekspor PDF (@media print di chrome.css)
    =========================================================================== */
 
 :root {
-  --anim-dur: 440ms;                     /* durasi masuk satu elemen */
-  --anim-draw: 950ms;                    /* garis SVG menggambar dirinya */
+  --anim-dur: 460ms;                     /* durasi masuk satu elemen */
+  --anim-draw: 1000ms;                   /* garis SVG / aksen menggambar dirinya */
   --anim-ease: cubic-bezier(0.16, 1, 0.3, 1); /* expo-out: tiba cepat lalu mengendap tenang */
 }
 
 /* --- Kosakata Arah Masuk ------------------------------------------------
-   Jarak tempuh mikro (12-18px) sehingga elemen terbaca "mendarat" presisi. */
+   Jarak tempuh asimetris & presisi. 12-20px menghasilkan sensasi settling
+   yang mewah dan terukur pada layar proyeksi maupun monitor desktop. */
 
 [data-anim] {
   transition: opacity var(--anim-dur) var(--anim-ease),
@@ -23,27 +34,27 @@
 
 [data-anim="naik"]   { opacity: 0; transform: translateY(16px); }
 [data-anim="turun"]  { opacity: 0; transform: translateY(-12px); }
-[data-anim="kanan"]  { opacity: 0; transform: translateX(-18px); }
-[data-anim="kiri"]   { opacity: 0; transform: translateX(18px); }
+[data-anim="kanan"]  { opacity: 0; transform: translateX(-20px); }
+[data-anim="kiri"]   { opacity: 0; transform: translateX(20px); }
 [data-anim="pudar"]  { opacity: 0; }
-[data-anim="tumbuh"] { opacity: 0; transform: scale(0.97); }
+[data-anim="tumbuh"] { opacity: 0; transform: scale(0.96); }
 
-/* Sapuan skala untuk elemen geometris brand UGM (rule 82x3, band, separator) */
+/* Sapuan skala untuk garis pemisah, rule aksen emas, dan border dekoratif */
 [data-anim="lebar"]  { transform: scaleX(0); transform-origin: left center; }
 [data-anim="tinggi"] { transform: scaleY(0); transform-origin: bottom center; }
 
-/* Satu selektor melepas animasi ketika slide aktif */
+/* Satu selektor kelas melepas animasi ketika slide aktif */
 .anim-nyala [data-anim] {
   opacity: 1;
   transform: none;
 }
 
-/* Delay staggered berbasis CSS variable */
+/* Jeda bertingkat (staggered delay) berbasis custom property --tunda */
 .anim-nyala [data-anim] {
   transition-delay: var(--tunda, 0ms);
 }
 
-/* --- Garis SVG yang Menggambar Dirinya --------------------------------- */
+/* --- Garis SVG / Motif yang Menggambar Dirinya ------------------------- */
 
 .garis-gambar {
   transition: stroke-dashoffset var(--anim-draw) var(--anim-ease);
@@ -57,7 +68,9 @@ svg.s-supergraphic {
   height: auto;
 }
 
-/* --- Aksesibilitas: Preferensi Gerak Minimal --------------------------- */
+/* =========================================================================
+   Penekan Gerak 1 dari 3: Preferensi Aksesibilitas Gerak Minimal
+   ========================================================================= */
 
 @media (prefers-reduced-motion: reduce) {
   [data-anim], .garis-gambar {
@@ -72,3 +85,21 @@ svg.s-supergraphic {
     stroke-dashoffset: 0 !important;
   }
 }
+
+/* =========================================================================
+   Penekan Gerak 2 dari 3: Modal Thumbnail Overview (Pintasan 'O')
+   .ov__thumb menyalin struktur DOM slide aktif/non-aktif. Salinan tidak pernah
+   memiliki kelas .anim-nyala. Tanpa aturan ini, thumbnail akan kosong.
+   ========================================================================= */
+
+.ov__thumb [data-anim] {
+  opacity: 1 !important;
+  transform: none !important;
+  transition: none !important;
+}
+
+.ov__thumb .garis-gambar {
+  stroke-dashoffset: 0 !important;
+}
+
+/* Penekan Gerak 3 dari 3 berada di chrome.css (@media print) */

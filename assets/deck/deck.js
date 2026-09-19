@@ -94,6 +94,11 @@
 
     html += s.html || '';
 
+    /* Injeksi wadah host widget jika didefinisikan pada slide dan belum ada di HTML */
+    if (s.widget && html.indexOf('data-widget') === -1) {
+      html += '<div class="s-body"><div class="wg" data-widget="' + s.widget + '"></div></div>';
+    }
+
     /* Nomor Slide Asli PPT di pojok kanan bawah */
     var slideNum = s.num || (i + 1);
     html += '<div class="slide-num">' + slideNum + '</div>';
@@ -111,40 +116,100 @@
     return wrap;
   }
 
-  /* --- Koreografi Animasi Otomatis ---------------------------------------- */
+  /* --- Koreografi Animasi Otomatis (Best Practice UGM Motion Engine) -------- */
 
-  var ANIM_MULAI = 200;
-  var ANIM_STEP = 55;
-  var ANIM_MAKS = 600;
+  var ANIM_MULAI = 200;   /* isi slide mulai masuk setelah judul & kicker */
+  var ANIM_STEP = 55;     /* jeda antar anak tangga (staggered delay) */
+  var ANIM_MAKS = 620;    /* batas jeda maksimum agar gerak tetap ringkas & terkendali */
+  var ANIM_BARIS = 40;    /* jeda antar baris tabel */
 
   function punya(el, nama) {
     return !!(el.classList && el.classList.contains(nama));
   }
 
+  /* Wadah tata letak: wadah tidak dianimasikan sebagai satu kesatuan, melainkan
+     anak-anaknya yang dianimasikan bertangga. Mendukung class grid resmi, flex container,
+     maupun div pembungkus kolom konten murni tanpa latar belakang. */
   function wadah(el) {
-    return punya(el, 'row') || punya(el, 'col') || punya(el, 'stack') ||
-      punya(el, 'grid2') || punya(el, 'grid3') || punya(el, 'grid4') ||
-      punya(el, 'col-split') || punya(el, 'col-split--rev') ||
-      punya(el, 'art-showcase') || punya(el, 'art-layout') ||
-      punya(el, 'sponsor-tier-grid') || punya(el, 'stepper-grid') || punya(el, 'pillar-grid');
+    if (!el) return false;
+    /* Jika elemen adalah kartu atau poin visual, elemen itu sendiri yang dianimasikan */
+    if (punya(el, 'card') || punya(el, 'bar-point')) return false;
+
+    if (el.classList) {
+      if (punya(el, 'row') || punya(el, 'col') || punya(el, 'stack') ||
+          punya(el, 'grid2') || punya(el, 'grid3') || punya(el, 'grid4') ||
+          punya(el, 'col-split') || punya(el, 'col-split--rev') ||
+          punya(el, 'stat-row') || punya(el, 'stepper-grid') || punya(el, 'pillar-grid') ||
+          punya(el, 'art-showcase') || punya(el, 'art-layout') ||
+          punya(el, 'sponsor-tier-grid') || punya(el, 'widget-host')) {
+        return true;
+      }
+    }
+
+    var st = el.getAttribute('style') || '';
+    /* Jika elemen membawa latar belakang atau border, ia adalah satu unit visual mandiri */
+    if (/background\s*:/i.test(st) || /border\s*:/i.test(st)) return false;
+
+    /* Pembungkus layout murni dengan inline style grid atau flex */
+    if (/display\s*:\s*(grid|flex)/i.test(st)) return true;
+
+    /* Div kolom polos tanpa background/border yang membungkus kartu/poin/figur */
+    if (el.tagName === 'DIV' && el.children.length > 1) {
+      for (var c = 0; c < el.children.length; c++) {
+        var ch = el.children[c];
+        if (punya(ch, 'card') || punya(ch, 'bar-point') || punya(ch, 'art-figure') ||
+            punya(ch, 'stat-row') || ch.tagName === 'DIV' || ch.tagName === 'BLOCKQUOTE') {
+          return true;
+        }
+      }
+    }
+    return false;
   }
 
+  /* Komponen berulang/deretan (daftar butir, perks, langkah) */
   function deretan(el) {
-    return punya(el, 'bullets') || punya(el, 'tier-perks') || punya(el, 'stat-group');
+    if (!el) return false;
+    return punya(el, 'bullets') || punya(el, 'steps') ||
+      punya(el, 'flow') || punya(el, 'legend') ||
+      punya(el, 'tier-perks') || punya(el, 'stat-group') ||
+      el.tagName === 'UL' || el.tagName === 'OL';
   }
 
   function tandai(el, arah, tunda) {
     if (!el || el.hasAttribute('data-anim')) return;
     el.setAttribute('data-anim', arah);
-    if (tunda) el.style.setProperty('--tunda', Math.round(tunda) + 'ms');
+    if (tunda != null) el.style.setProperty('--tunda', Math.round(tunda) + 'ms');
   }
 
   function koreografi(wrap, layout) {
     var slide = wrap.querySelector('.slide');
     if (!slide) return;
 
+    /* 1. Koreografi Khusus Slide Sampul (layout: 'title') */
+    if (layout === 'title') {
+      tandai(slide.querySelector('.title-art'), 'pudar', 0);
+      tandai(slide.querySelector('.title-kicker'), 'turun', 60);
+      tandai(slide.querySelector('.title-h1'), 'naik', 140);
+      tandai(slide.querySelector('.title-sub'), 'naik', 260);
+      tandai(slide.querySelector('.title-meta'), 'naik', 380);
+      return;
+    }
+
+    /* 2. Koreografi Khusus Slide Penutup (layout: 'closing') */
+    if (layout === 'closing') {
+      tandai(slide.querySelector('.closing-art'), 'pudar', 0);
+      tandai(slide.querySelector('.closing-content .title-kicker'), 'turun', 60);
+      tandai(slide.querySelector('.closing-h2'), 'naik', 140);
+      tandai(slide.querySelector('.closing-sub'), 'naik', 240);
+      tandai(slide.querySelector('.closing-content .card'), 'tumbuh', 340);
+      tandai(slide.querySelector('.closing-content > p:last-child'), 'naik', 440);
+      return;
+    }
+
+    /* 3. Koreografi Slide Isi Standar */
     tandai(slide.querySelector('.s-kicker'), 'turun', 0);
     tandai(slide.querySelector('.s-h2'), 'naik', 60);
+    tandai(slide.querySelector('.footnote'), 'pudar', 500);
 
     var body = slide.querySelector('.s-body') || slide.querySelector('.art-layout');
     if (!body) return;
@@ -167,14 +232,35 @@
       if (el.hasAttribute('data-widget')) { tandai(el, 'tumbuh', jeda()); continue; }
       if (wadah(el) && el.children.length) { telusuri(el, jeda); continue; }
       if (deretan(el) && el.children.length) { deret(el, jeda); continue; }
-      tandai(el, 'naik', jeda());
+      if (punya(el, 'tbl') || el.tagName === 'TABLE') { tabel(el, jeda); continue; }
+
+      /* Arah masuk khusus untuk elemen karakteristik Data Art */
+      if (punya(el, 'bar-point')) {
+        tandai(el, 'kanan', jeda());
+      } else if (punya(el, 'art-figure')) {
+        tandai(el, 'tumbuh', jeda());
+      } else {
+        tandai(el, 'naik', jeda());
+      }
     }
   }
 
   function deret(el, jeda) {
+    var mendatar = (punya(el, 'flow') && !punya(el, 'flow--stack')) ||
+                   (el.tagName === 'UL' && /grid/i.test(el.getAttribute('style') || ''));
     var anak = el.children;
     for (var i = 0; i < anak.length; i++) {
-      tandai(anak[i], 'naik', jeda());
+      var arah = mendatar ? 'kanan' : 'naik';
+      tandai(anak[i], arah, jeda());
+    }
+  }
+
+  function tabel(el, jeda) {
+    var t = jeda();
+    tandai(el, 'naik', t);
+    var baris = el.querySelectorAll('tbody > tr');
+    for (var i = 0; i < baris.length; i++) {
+      tandai(baris[i], 'pudar', t + 100 + i * ANIM_BARIS);
     }
   }
 
