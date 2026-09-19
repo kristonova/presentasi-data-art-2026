@@ -622,27 +622,60 @@
     renderTier(tiers[0]);
 
     var allBtns = btnRow.querySelectorAll('button');
-    allBtns.forEach(function (btn, i) {
-      btn.addEventListener('click', function () {
-        allBtns.forEach(function (b) {
+    var currentIdx = 0;
+    var autoTimer = null;
+    var fadeTimer = null;
+
+    function switchTier(idx) {
+      currentIdx = idx;
+      allBtns.forEach(function (b, bIdx) {
+        if (bIdx === idx) {
+          b.style.background = 'var(--amber)';
+          b.style.color = '#0C0B10';
+          b.style.borderColor = 'var(--amber)';
+        } else {
           b.style.background = '#181720';
           b.style.color = 'var(--text-bright)';
           b.style.borderColor = 'rgba(255,255,255,0.15)';
-        });
-        btn.style.background = 'var(--amber)';
-        btn.style.color = '#0C0B10';
-        btn.style.borderColor = 'var(--amber)';
-        displayCard.style.opacity = '0';
-        displayCard.style.transform = 'translateY(6px)';
-        setTimeout(function () {
-          renderTier(tiers[i]);
-          displayCard.style.opacity = '1';
-          displayCard.style.transform = 'none';
-        }, 70);
+        }
+      });
+      displayCard.style.opacity = '0';
+      displayCard.style.transform = 'translateY(6px)';
+      if (fadeTimer) clearTimeout(fadeTimer);
+      fadeTimer = setTimeout(function () {
+        renderTier(tiers[idx]);
+        displayCard.style.opacity = '1';
+        displayCard.style.transform = 'none';
+      }, 70);
+    }
+
+    function startAutoSwitch() {
+      if (autoTimer) clearInterval(autoTimer);
+      autoTimer = setInterval(function () {
+        var nextIdx = (currentIdx + 1) % tiers.length;
+        switchTier(nextIdx);
+      }, 6000);
+    }
+
+    allBtns.forEach(function (btn, i) {
+      btn.addEventListener('click', function () {
+        switchTier(i);
+        startAutoSwitch();
       });
     });
 
-    return null;
+    startAutoSwitch();
+
+    return function () {
+      if (autoTimer) {
+        clearInterval(autoTimer);
+        autoTimer = null;
+      }
+      if (fadeTimer) {
+        clearTimeout(fadeTimer);
+        fadeTimer = null;
+      }
+    };
   };
 
   /* =========================================================================
@@ -716,27 +749,66 @@
     showItem(prodiData[0]);
 
     var buttons = btnRow.querySelectorAll('button');
-    buttons.forEach(function (btn, idx) {
-      btn.addEventListener('click', function () {
-        buttons.forEach(function (b) {
+    var currentIdx = 0;
+    var autoTimer = null;
+    var fadeTimer = null;
+
+    function switchProdi(idx) {
+      currentIdx = idx;
+      buttons.forEach(function (b, bIdx) {
+        if (bIdx === idx) {
+          b.style.background = 'var(--amber)';
+          b.style.color = '#0C0B10';
+          b.style.borderColor = 'var(--amber)';
+        } else {
           b.style.background = '#181720';
           b.style.color = 'var(--text-bright)';
           b.style.borderColor = 'rgba(255,255,255,0.15)';
-        });
-        btn.style.background = 'var(--amber)';
-        btn.style.color = '#0C0B10';
-        btn.style.borderColor = 'var(--amber)';
-        viewWrap.style.opacity = '0';
-        viewWrap.style.transform = 'translateY(6px)';
-        setTimeout(function () {
-          showItem(prodiData[idx]);
-          viewWrap.style.opacity = '1';
-          viewWrap.style.transform = 'none';
-        }, 70);
+        }
+      });
+      viewWrap.style.opacity = '0';
+      viewWrap.style.transform = 'translateY(6px)';
+      if (fadeTimer) clearTimeout(fadeTimer);
+      fadeTimer = setTimeout(function () {
+        showItem(prodiData[idx]);
+        viewWrap.style.opacity = '1';
+        viewWrap.style.transform = 'none';
+      }, 70);
+    }
+
+    function startAutoSwitch() {
+      if (autoTimer) clearInterval(autoTimer);
+      autoTimer = setInterval(function () {
+        var nextIdx = (currentIdx + 1) % prodiData.length;
+        switchProdi(nextIdx);
+      }, 6000);
+    }
+
+    buttons.forEach(function (btn, idx) {
+      btn.addEventListener('click', function () {
+        switchProdi(idx);
+        startAutoSwitch();
       });
     });
 
-    return null;
+    startAutoSwitch();
+
+    // Preload semua gambar prodi agar transisi selalu instan tanpa jeda muat
+    prodiData.forEach(function (p) {
+      var img = new Image();
+      img.src = p.file;
+    });
+
+    return function () {
+      if (autoTimer) {
+        clearInterval(autoTimer);
+        autoTimer = null;
+      }
+      if (fadeTimer) {
+        clearTimeout(fadeTimer);
+        fadeTimer = null;
+      }
+    };
   };
 
 })();
