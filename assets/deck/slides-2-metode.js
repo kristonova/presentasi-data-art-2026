@@ -67,7 +67,7 @@
     title: 'Karya Nyata Para Pimpinan dan Guru Besar Kita',
     footnote: 'Karya-karya resmi yang dipamerkan oleh pimpinan dan pengajar FMIPA UGM pada Data Art 2025',
     notes: 'Di slide ini, kita melihat langsung portofolio karya para pimpinan dan guru besar kita. ' +
-      'Pak Wiwit Suryanto, Wakil Dekan kita, mengubah data rekaman getaran gempa bumi geofisika menjadi karya interaktif Sound of Seismograph yang memukau. ' +
+      'Pak Wiwit Suryanto, Wakil Dekan kita, mengubah data rekaman gempa Gunung Etna menjadi karya sonifikasi dan visual interaktif Sound of Seismograph yang memukau. ' +
       'Prof. Sholihun mengubah model komputasi kisi kristal fisika kuantum menjadi motif batik Quantum Batik bernilai filosofis tinggi. ' +
       'Dan Prof. Indah Emilia menerjemahkan struktur aljabar murni ke dalam visualisasi eksistensial Kami Hadir 1 & 2. ' +
       'Ini adalah bukti sahih bahwa dosen MIPA UGM bukan hanya ilmuwan tangguh, tetapi juga seniman peradaban.',
@@ -76,15 +76,15 @@
       '<div class="grid3" style="gap:18px;">' +
       '<div class="card" style="padding:16px;background:var(--bg-dark-card);border:1px solid var(--bg-dark-border);">' +
       '<div class="art-figure" style="height:190px;background:#000;margin-bottom:12px;border-radius:2px;">' +
-      '<img src="assets/figures/karya_geofisika_cincin.jpg" alt="Sound of Seismograph Dr. Wiwit Suryanto">' +
+      '<img src="assets/figures/sound_of_seismograph.jpg" alt="Sound of Seismograph Dr. Wiwit Suryanto" style="width:100%;height:100%;object-fit:cover;">' +
       '</div>' +
       '<div style="font-size:11px;font-weight:bold;color:var(--amber);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px;">Geofisika &middot; Sound of Seismograph</div>' +
-      '<h4 style="font-family:var(--font-serif);font-size:17px;color:#fff;margin:0 0 6px;">Dr.rer.nat. Wiwit Suryanto, M.Si.</h4>' +
-      '<p style="font-size:13px;color:var(--text-dark-body);line-height:1.45;margin:0;">Getaran gelombang seismik bumi diterjemahkan menjadi harmonisasi frekuensi suara dan visual cincin gempa yang megah.</p>' +
+      '<h4 style="font-family:var(--font-serif);font-size:17px;color:#fff;margin:0 0 6px;">Dr.rer.nat. Wiwit Suryanto, S.Si., M.Si.</h4>' +
+      '<p style="font-size:13px;color:var(--text-dark-body);line-height:1.45;margin:0;">Sonifikasi data gempa Gunung Etna menjadi harmoni multi-instrumen (piano, string, gong) dan visual spasial yang selaras dengan aktivitas vulkanik.</p>' +
       '</div>' +
       '<div class="card" style="padding:16px;background:var(--bg-dark-card);border:1px solid var(--bg-dark-border);">' +
       '<div class="art-figure" style="height:190px;background:#000;margin-bottom:12px;border-radius:2px;">' +
-      '<img src="assets/figures/quantum_batik.jpg" alt="Quantum Batik Prof. Sholihun">' +
+      '<img src="assets/figures/quantum_batik.jpg" alt="Quantum Batik Prof. Sholihun" style="width:100%;height:100%;object-fit:cover;">' +
       '</div>' +
       '<div style="font-size:11px;font-weight:bold;color:var(--amber);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px;">Fisika &middot; Quantum Batik</div>' +
       '<h4 style="font-family:var(--font-serif);font-size:17px;color:#fff;margin:0 0 6px;">Prof. Sholihun, S.Si., Ph.D.Sc.</h4>' +
@@ -92,7 +92,7 @@
       '</div>' +
       '<div class="card" style="padding:16px;background:var(--bg-dark-card);border:1px solid var(--bg-dark-border);">' +
       '<div class="art-figure" style="height:190px;background:#000;margin-bottom:12px;border-radius:2px;">' +
-      '<img src="assets/figures/kami_hadir.jpg" alt="Kami Hadir Prof. Indah Emilia">' +
+      '<img src="assets/figures/kami_hadir.jpg" alt="Kami Hadir Prof. Indah Emilia" style="width:100%;height:100%;object-fit:cover;">' +
       '</div>' +
       '<div style="font-size:11px;font-weight:bold;color:var(--amber);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px;">Matematika &middot; Kami Hadir 1 & 2</div>' +
       '<h4 style="font-family:var(--font-serif);font-size:17px;color:#fff;margin:0 0 6px;">Prof. Dr.rer.nat. Indah Emilia, M.Si.</h4>' +
